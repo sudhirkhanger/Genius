@@ -1,7 +1,17 @@
 # Genius
 
+## About
+
 Genius is an app about movies and TV shows with a purpose to learn
 advanced Android concepts and try new APIs.
+
+## Links
+
+* https://androidteachers.com/kotlin-for-android/retrofit-kotlin-android/
+* https://www.androidhive.info/2016/05/android-working-with-retrofit-http-library/
+* http://square.github.io/retrofit/
+* https://guides.codepath.com/android/creating-and-using-fragments
+* https://futurestud.io/tutorials/retrofit-2-log-requests-and-responses
 
     Copyright 2018 Sudhir Khanger
 
