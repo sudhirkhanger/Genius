@@ -13,6 +13,7 @@ advanced Android concepts and try new APIs.
 * https://guides.codepath.com/android/creating-and-using-fragments
 * https://futurestud.io/tutorials/retrofit-2-log-requests-and-responses
 
+
     Copyright 2018 Sudhir Khanger
 
     Licensed under the Apache License, Version 2.0 (the "License");
