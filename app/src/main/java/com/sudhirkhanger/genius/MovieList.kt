@@ -18,7 +18,7 @@ package com.sudhirkhanger.genius
 
 import com.google.gson.annotations.SerializedName
 
-data class Movie(
+data class MovieList(
 
         @field:SerializedName("page")
         val page: Int? = null,
@@ -27,13 +27,13 @@ data class Movie(
         val totalPages: Int? = null,
 
         @field:SerializedName("results")
-        val results: List<ResultsItem?>? = null,
+        val results: List<Movie?>? = null,
 
         @field:SerializedName("total_results")
         val totalResults: Int? = null
 )
 
-data class ResultsItem(
+data class Movie(
 
         @field:SerializedName("overview")
         val overview: String? = null,

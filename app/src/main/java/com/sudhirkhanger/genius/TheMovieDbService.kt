@@ -50,5 +50,5 @@ interface TheMovieDbService {
     @GET("movie/popular")
     fun getPopularMovies(@Query("page") page: Int,
                          @Query("api_key") api_key: String):
-            Call<Movie>
+            Call<MovieList>
 }
