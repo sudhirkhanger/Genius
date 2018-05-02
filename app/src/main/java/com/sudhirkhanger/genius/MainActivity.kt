@@ -16,6 +16,7 @@
 
 package com.sudhirkhanger.genius
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private val TAG = MainActivity::class.java.simpleName
+        const val KEY_MOVIE = "movie_parcel"
         private const val COL = 2
     }
 
@@ -45,7 +47,10 @@ class MainActivity : AppCompatActivity() {
         movieAdapter = MovieAdapter(mutableListOf(),
                 object : MovieAdapter.OnMovieClickListener {
                     override fun invoke(movie: Movie) {
-                        Log.e(TAG, movie.title)
+                        val detailActivityIntent = Intent(this@MainActivity,
+                                DetailActivity::class.java)
+                        detailActivityIntent.putExtra(KEY_MOVIE, movie)
+                        startActivity(detailActivityIntent)
                     }
                 })
 
@@ -62,18 +67,21 @@ class MainActivity : AppCompatActivity() {
         call.enqueue(object : Callback<MovieList> {
 
             override fun onResponse(call: Call<MovieList>?, response: Response<MovieList>?) {
-                Log.e(TAG, response?.body()?.results!![0]?.title)
-                val movieList: List<Movie?>? = response.body()?.results
+                val movieList: List<Movie?>? = response?.body()?.results
                 val movieAdapter = MovieAdapter(movieList!!.toMutableList(),
                         object : MovieAdapter.OnMovieClickListener {
                             override fun invoke(movie: Movie) {
-                                Log.e(TAG, movie.title)
+                                val detailActivityIntent = Intent(this@MainActivity,
+                                        DetailActivity::class.java)
+                                detailActivityIntent.putExtra(KEY_MOVIE, movie)
+                                startActivity(detailActivityIntent)
                             }
                         })
                 movieRecyclerView.adapter = movieAdapter
             }
 
             override fun onFailure(call: Call<MovieList>?, t: Throwable?) {
+                Log.e(TAG, t.toString())
             }
         })
     }

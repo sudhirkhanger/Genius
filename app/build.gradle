@@ -37,6 +37,9 @@ android {
     buildTypes.each {
         it.buildConfigField 'String', 'THE_MOVIE_DB_API_KEY', MyTheMovieDBApiKey
     }
+    androidExtensions {
+        experimental = true
+    }
 }
 
 dependencies {

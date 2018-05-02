@@ -16,6 +16,44 @@
 
 package com.sudhirkhanger.genius
 
+import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.util.Log
+import android.widget.ImageView
+import android.widget.TextView
+import com.squareup.picasso.Picasso
 
-class DetailActivity {
+class DetailActivity : AppCompatActivity() {
+
+    companion object {
+        private val TAG = DetailActivity::class.java.simpleName
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_detail)
+
+        val movie = intent.extras.getParcelable(MainActivity.KEY_MOVIE) as Movie
+        Log.e(TAG, movie.title)
+
+        val title = findViewById<TextView>(R.id.title_text_view)
+        val rating = findViewById<TextView>(R.id.ratings_text_view)
+        val releaseDate = findViewById<TextView>(R.id.release_date_text_view)
+        val overview = findViewById<TextView>(R.id.overview_text_view)
+        val posterImageView = findViewById<ImageView>(R.id.poster_image_view)
+        val backdropImageView = findViewById<ImageView>(R.id.backdrop_image_view)
+
+        title.text = movie.title
+        rating.text = movie.voteAverage.toString()
+        releaseDate.text = movie.releaseDate
+        overview.text = movie.overview
+
+        Picasso.with(this)
+                .load("https://image.tmdb.org/t/p/w185/${movie.posterPath}")
+                .into(posterImageView)
+
+        Picasso.with(this)
+                .load("https://image.tmdb.org/t/p/w300/${movie.backdropPath}")
+                .into(backdropImageView)
+    }
 }
