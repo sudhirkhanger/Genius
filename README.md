@@ -16,6 +16,16 @@ advanced Android concepts and try new APIs.
 * https://proandroiddev.com/parcelable-in-kotlin-here-comes-parcelize-b998d5a5fcac
 * https://github.com/google/iosched
 
+#### Dagger
+
+* [Understanding Dagger 2](https://medium.com/@Miqubel/understanding-dagger-2-367ff1bd184f)
+* [The Future of Dependency Injection with Dagger 2](https://www.youtube.com/watch?v=plK0zyRLIP8)
+* [DAGGER 2 - A New Type of dependency injection](https://www.youtube.com/watch?v=oK_XtfXPkqw)
+* [Dependency injection with Dagger 2 - Introduction to DI](http://frogermcs.github.io/dependency-injection-with-dagger-2-introdution-to-di/)
+* [Dependency injection with Dagger 2 - the API](http://frogermcs.github.io/dependency-injection-with-dagger-2-the-api/)
+* [Dependency injection with Dagger 2 - Custom scopes](http://frogermcs.github.io/dependency-injection-with-dagger-2-custom-scopes/)
+* [Android Dagger 2 + Retrofit + RecyclerView](https://www.journaldev.com/20405/android-dagger-2-retrofit-recyclerview)
+
 ---
 
     Copyright 2018 Sudhir Khanger
