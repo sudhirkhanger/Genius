@@ -24,19 +24,16 @@ import android.widget.TextView
 import com.squareup.picasso.Picasso
 import com.sudhirkhanger.genius.R
 import com.sudhirkhanger.genius.model.Movie
+import timber.log.Timber
 
 class DetailActivity : AppCompatActivity() {
-
-    companion object {
-        private val TAG = DetailActivity::class.java.simpleName
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
         val movie = intent.extras.getParcelable(MainActivity.KEY_MOVIE) as Movie
-        Log.e(TAG, movie.title)
+        Timber.e(movie.title)
 
         val title = findViewById<TextView>(R.id.title_text_view)
         val rating = findViewById<TextView>(R.id.ratings_text_view)

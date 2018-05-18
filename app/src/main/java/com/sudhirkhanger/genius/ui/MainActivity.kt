@@ -21,7 +21,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import com.sudhirkhanger.genius.AppApplication
 import com.sudhirkhanger.genius.BuildConfig
 import com.sudhirkhanger.genius.R
@@ -36,12 +35,12 @@ import com.sudhirkhanger.genius.retrofit.TheMovieDbService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import timber.log.Timber
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        private val TAG = MainActivity::class.java.simpleName
         const val KEY_MOVIE = "movie_parcel"
         private const val COL = 2
     }
@@ -104,7 +103,7 @@ class MainActivity : AppCompatActivity() {
                 .enqueue(object : Callback<MovieList?> {
 
                     override fun onFailure(call: Call<MovieList?>?, t: Throwable?) {
-                        Log.e(TAG, t.toString())
+                        Timber.e(t.toString())
                     }
 
                     override fun onResponse(

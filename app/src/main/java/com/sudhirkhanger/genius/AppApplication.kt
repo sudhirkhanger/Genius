@@ -21,6 +21,7 @@ import android.app.Application
 import com.sudhirkhanger.genius.di.component.ApplicationComponent
 import com.sudhirkhanger.genius.di.component.DaggerApplicationComponent
 import com.sudhirkhanger.genius.di.module.ContextModule
+import timber.log.Timber
 
 class AppApplication : Application() {
 
@@ -40,6 +41,9 @@ class AppApplication : Application() {
         super.onCreate()
         appComponent.injectApplication(this)
         instance = this
+
+        if (BuildConfig.DEBUG)
+            Timber.plant(Timber.DebugTree())
     }
 
     fun getApplicationComponent(): ApplicationComponent = appComponent
