@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sudhirkhanger.genius
+package com.sudhirkhanger.genius.ui
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -22,6 +22,8 @@ import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
+import com.sudhirkhanger.genius.R
+import com.sudhirkhanger.genius.model.Movie
 
 class DetailActivity : AppCompatActivity() {
 

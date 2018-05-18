@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sudhirkhanger.genius
+package com.sudhirkhanger.genius.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

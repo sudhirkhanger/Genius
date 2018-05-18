@@ -25,6 +25,7 @@ advanced Android concepts and try new APIs.
 * [Dependency injection with Dagger 2 - the API](http://frogermcs.github.io/dependency-injection-with-dagger-2-the-api/)
 * [Dependency injection with Dagger 2 - Custom scopes](http://frogermcs.github.io/dependency-injection-with-dagger-2-custom-scopes/)
 * [Android Dagger 2 + Retrofit + RecyclerView](https://www.journaldev.com/20405/android-dagger-2-retrofit-recyclerview)
+* [List of resources to learn about Dagger 2](https://github.com/abhiank/LearnDagger)
 
 ---
 

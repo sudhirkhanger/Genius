@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sudhirkhanger.genius
+package com.sudhirkhanger.genius.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -22,6 +22,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.squareup.picasso.Picasso
+import com.sudhirkhanger.genius.R
+import com.sudhirkhanger.genius.model.Movie
 
 class MovieAdapter(private val movies: MutableList<Movie?>,
                    private val onMovieClick: OnMovieClickListener) :
