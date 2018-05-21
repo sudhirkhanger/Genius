@@ -18,6 +18,7 @@ advanced Android concepts and try new APIs.
 
 #### Dagger
 
+* [Dagger](https://google.github.io/dagger/)
 * [Understanding Dagger 2](https://medium.com/@Miqubel/understanding-dagger-2-367ff1bd184f)
 * [The Future of Dependency Injection with Dagger 2](https://www.youtube.com/watch?v=plK0zyRLIP8)
 * [DAGGER 2 - A New Type of dependency injection](https://www.youtube.com/watch?v=oK_XtfXPkqw)
@@ -27,6 +28,8 @@ advanced Android concepts and try new APIs.
 * [Android Dagger 2 + Retrofit + RecyclerView](https://www.journaldev.com/20405/android-dagger-2-retrofit-recyclerview)
 * [List of resources to learn about Dagger 2](https://github.com/abhiank/LearnDagger)
 * [Correct usage of Dagger 2 @Named annotation in Kotlin](https://medium.com/@WindRider/correct-usage-of-dagger-2-named-annotation-in-kotlin-8ab17ced6928)
+* [Dagger 2 for Dummies in Kotlin (with 20 lines of code)](https://medium.com/@elye.project/dagger-2-for-dummies-in-kotlin-with-one-page-simple-code-project-618a5f9f2fe8)
+* [Dagger 2 for Android Beginners](https://medium.com/@harivigneshjayapalan/dagger-2-for-android-beginners-introduction-be6580cb3edb)
 
 ---
 
