@@ -16,6 +16,7 @@
 
 package com.sudhirkhanger.genius.ui
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -29,6 +30,8 @@ import com.sudhirkhanger.genius.di.component.ApplicationComponent
 import com.sudhirkhanger.genius.di.component.DaggerMainActivityComponent
 import com.sudhirkhanger.genius.di.component.MainActivityComponent
 import com.sudhirkhanger.genius.di.module.MainActivityContextModule
+import com.sudhirkhanger.genius.di.qualifier.ActivityContext
+import com.sudhirkhanger.genius.di.qualifier.ApplicationContext
 import com.sudhirkhanger.genius.model.Movie
 import com.sudhirkhanger.genius.model.MovieList
 import com.sudhirkhanger.genius.retrofit.TheMovieDbService
@@ -50,13 +53,13 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var theMovieDbService: TheMovieDbService
 
-//    @Inject
-//    @ApplicationContext
-//    lateinit var appContext: Context
+    @Inject
+    @field:ApplicationContext
+    lateinit var appContext: Context
 
-//    @Inject
-//    @ActivityContext
-//    lateinit var activityContext: Context
+    @Inject
+    @field:ActivityContext
+    lateinit var activityContext: Context
 
     private lateinit var movieRecyclerView: RecyclerView
     private lateinit var movieAdapter: RecyclerView.Adapter<*>
