@@ -27,5 +27,6 @@ task clean(type: Delete) {
 }
 
 ext {
-    daggerVersion = "2.16"
+    dagger_version = "2.16"
+    lifecycle_version = "1.1.1"
 }

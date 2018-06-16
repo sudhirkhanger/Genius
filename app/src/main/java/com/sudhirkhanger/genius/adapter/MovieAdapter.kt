@@ -25,9 +25,11 @@ import com.squareup.picasso.Picasso
 import com.sudhirkhanger.genius.R
 import com.sudhirkhanger.genius.model.Movie
 
-class MovieAdapter(private val movies: MutableList<Movie?>,
-                   private val onMovieClick: OnMovieClickListener) :
+class MovieAdapter(
+        private val onMovieClick: OnMovieClickListener) :
         RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+
+    private var movies: MutableList<Movie?> = mutableListOf()
 
     interface OnMovieClickListener {
         fun onMovieClick(movie: Movie)
@@ -57,5 +59,10 @@ class MovieAdapter(private val movies: MutableList<Movie?>,
                 itemView.setOnClickListener { onMovieClickListener.onMovieClick(this) }
             }
         }
+    }
+
+    fun setMovieData(movies: MutableList<Movie?>) {
+        this.movies = movies
+        notifyDataSetChanged()
     }
 }

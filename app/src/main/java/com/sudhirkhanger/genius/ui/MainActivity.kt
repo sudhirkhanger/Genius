@@ -62,8 +62,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var activityContext: Context
 
     private lateinit var movieRecyclerView: RecyclerView
-    private lateinit var movieAdapter: RecyclerView.Adapter<*>
-    private lateinit var viewManager: RecyclerView.LayoutManager
+    private lateinit var movieAdapter: MovieAdapter
 
     private val movieClickListener = object : MovieAdapter.OnMovieClickListener {
         override fun onMovieClick(movie: Movie) {
@@ -91,12 +90,11 @@ class MainActivity : AppCompatActivity() {
 
         callGetPopularMovies()
 
-        viewManager = GridLayoutManager(this, COL)
-        movieAdapter = MovieAdapter(mutableListOf(), movieClickListener)
+        movieAdapter = MovieAdapter(movieClickListener)
 
         movieRecyclerView = findViewById<RecyclerView>(R.id.movie_recycler_view).apply {
             setHasFixedSize(true)
-            layoutManager = viewManager
+            layoutManager = GridLayoutManager(activityContext, COL)
             adapter = movieAdapter
         }
     }
@@ -114,8 +112,7 @@ class MainActivity : AppCompatActivity() {
                             call: Call<MovieList?>?,
                             response: Response<MovieList?>?) {
                         val movieList: List<Movie?>? = response?.body()?.results
-                        val movieAdapter = MovieAdapter(movieList!!.toMutableList(),
-                                movieClickListener)
+                        movieAdapter.setMovieData(movieList!!.toMutableList())
                         movieRecyclerView.adapter = movieAdapter
                     }
                 })
