@@ -29,12 +29,8 @@ class MovieAdapter(private val movies: MutableList<Movie?>,
                    private val onMovieClick: OnMovieClickListener) :
         RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
-    companion object {
-        private val TAG = MovieAdapter::class.java.simpleName
-    }
-
     interface OnMovieClickListener {
-        operator fun invoke(movie: Movie)
+        fun onMovieClick(movie: Movie)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
@@ -49,7 +45,7 @@ class MovieAdapter(private val movies: MutableList<Movie?>,
         holder.bindMovie(movies[position]!!)
     }
 
-    class MovieViewHolder(view: View, private val onMovieClick: OnMovieClickListener) :
+    class MovieViewHolder(view: View, private val onMovieClickListener: OnMovieClickListener) :
             RecyclerView.ViewHolder(view) {
         private val movieImage = view.findViewById<ImageView>(R.id.movie_image_view)
 
@@ -58,7 +54,7 @@ class MovieAdapter(private val movies: MutableList<Movie?>,
                 Picasso.with(itemView.context)
                         .load("https://image.tmdb.org/t/p/w185/${movie.posterPath}")
                         .into(movieImage)
-                itemView.setOnClickListener { onMovieClick(this) }
+                itemView.setOnClickListener { onMovieClickListener.onMovieClick(this) }
             }
         }
     }

@@ -65,6 +65,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var movieAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
 
+    private val movieClickListener = object : MovieAdapter.OnMovieClickListener {
+        override fun onMovieClick(movie: Movie) {
+            val detailActivityIntent = Intent(activityContext,
+                    DetailActivity::class.java)
+            detailActivityIntent.putExtra(KEY_MOVIE, movie)
+            startActivity(detailActivityIntent)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -83,15 +92,7 @@ class MainActivity : AppCompatActivity() {
         callGetPopularMovies()
 
         viewManager = GridLayoutManager(this, COL)
-        movieAdapter = MovieAdapter(mutableListOf(),
-                object : MovieAdapter.OnMovieClickListener {
-                    override fun invoke(movie: Movie) {
-                        val detailActivityIntent = Intent(this@MainActivity,
-                                DetailActivity::class.java)
-                        detailActivityIntent.putExtra(KEY_MOVIE, movie)
-                        startActivity(detailActivityIntent)
-                    }
-                })
+        movieAdapter = MovieAdapter(mutableListOf(), movieClickListener)
 
         movieRecyclerView = findViewById<RecyclerView>(R.id.movie_recycler_view).apply {
             setHasFixedSize(true)
@@ -101,7 +102,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun callGetPopularMovies() {
-
+        Timber.e("Retrofit called")
         theMovieDbService.getPopularMovies(1, BuildConfig.THE_MOVIE_DB_API_KEY)
                 .enqueue(object : Callback<MovieList?> {
 
@@ -114,14 +115,7 @@ class MainActivity : AppCompatActivity() {
                             response: Response<MovieList?>?) {
                         val movieList: List<Movie?>? = response?.body()?.results
                         val movieAdapter = MovieAdapter(movieList!!.toMutableList(),
-                                object : MovieAdapter.OnMovieClickListener {
-                                    override fun invoke(movie: Movie) {
-                                        val detailActivityIntent = Intent(this@MainActivity,
-                                                DetailActivity::class.java)
-                                        detailActivityIntent.putExtra(KEY_MOVIE, movie)
-                                        startActivity(detailActivityIntent)
-                                    }
-                                })
+                                movieClickListener)
                         movieRecyclerView.adapter = movieAdapter
                     }
                 })
