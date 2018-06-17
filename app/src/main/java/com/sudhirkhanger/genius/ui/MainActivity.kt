@@ -88,15 +88,13 @@ class MainActivity : AppCompatActivity() {
 
         mainActivityComponent.injectMainActivity(this)
 
-        callGetPopularMovies()
-
         movieAdapter = MovieAdapter(movieClickListener)
-
         movieRecyclerView = findViewById<RecyclerView>(R.id.movie_recycler_view).apply {
             setHasFixedSize(true)
             layoutManager = GridLayoutManager(activityContext, COL)
             adapter = movieAdapter
         }
+        callGetPopularMovies()
     }
 
     private fun callGetPopularMovies() {
