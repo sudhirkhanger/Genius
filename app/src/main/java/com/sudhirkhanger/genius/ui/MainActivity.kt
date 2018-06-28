@@ -16,6 +16,8 @@
 
 package com.sudhirkhanger.genius.ui
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -23,7 +25,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.sudhirkhanger.genius.AppApplication
-import com.sudhirkhanger.genius.BuildConfig
+import com.sudhirkhanger.genius.MainViewModel
 import com.sudhirkhanger.genius.R
 import com.sudhirkhanger.genius.adapter.MovieAdapter
 import com.sudhirkhanger.genius.di.component.ApplicationComponent
@@ -33,12 +35,7 @@ import com.sudhirkhanger.genius.di.module.MainActivityContextModule
 import com.sudhirkhanger.genius.di.qualifier.ActivityContext
 import com.sudhirkhanger.genius.di.qualifier.ApplicationContext
 import com.sudhirkhanger.genius.model.Movie
-import com.sudhirkhanger.genius.model.MovieList
 import com.sudhirkhanger.genius.retrofit.TheMovieDbService
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import timber.log.Timber
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -94,25 +91,11 @@ class MainActivity : AppCompatActivity() {
             layoutManager = GridLayoutManager(activityContext, COL)
             adapter = movieAdapter
         }
-        callGetPopularMovies()
-    }
 
-    private fun callGetPopularMovies() {
-        Timber.e("Retrofit called")
-        theMovieDbService.getPopularMovies(1, BuildConfig.THE_MOVIE_DB_API_KEY)
-                .enqueue(object : Callback<MovieList?> {
-
-                    override fun onFailure(call: Call<MovieList?>?, t: Throwable?) {
-                        Timber.e(t.toString())
-                    }
-
-                    override fun onResponse(
-                            call: Call<MovieList?>?,
-                            response: Response<MovieList?>?) {
-                        val movieList: List<Movie?>? = response?.body()?.results
-                        movieAdapter.setMovieData(movieList!!.toMutableList())
-                        movieRecyclerView.adapter = movieAdapter
-                    }
-                })
+        val mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        mainViewModel.getMovies().observe(this, Observer {
+            movieAdapter.setMovieData(it!!.toMutableList())
+            movieRecyclerView.adapter = movieAdapter
+        })
     }
 }
