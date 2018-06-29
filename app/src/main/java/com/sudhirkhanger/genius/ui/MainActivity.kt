@@ -25,7 +25,6 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.sudhirkhanger.genius.AppApplication
-import com.sudhirkhanger.genius.MainViewModel
 import com.sudhirkhanger.genius.R
 import com.sudhirkhanger.genius.adapter.MovieAdapter
 import com.sudhirkhanger.genius.di.component.ApplicationComponent
@@ -49,6 +48,9 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var theMovieDbService: TheMovieDbService
+
+//    @Inject
+//    lateinit var daggerViewModelFactory: DaggerViewModelFactory
 
     @Inject
     @field:ApplicationContext
@@ -92,8 +94,17 @@ class MainActivity : AppCompatActivity() {
             adapter = movieAdapter
         }
 
-        val mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        mainViewModel.getMovies().observe(this, Observer {
+//        val mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+//        mainViewModel.getMovies().observe(this, Observer {
+//            movieAdapter.setMovieData(it!!.toMutableList())
+//            movieRecyclerView.adapter = movieAdapter
+//        })
+
+        val daggerViewModelFactory = DaggerViewModelFactory(theMovieDbService)
+//        val daggerViewModel = ViewModelProviders.of(this, daggerViewModelFactory)
+        val daggerViewModel = ViewModelProviders.of(this, daggerViewModelFactory)
+                .get(DaggerViewModel::class.java)
+        daggerViewModel.getMovies().observe(this, Observer {
             movieAdapter.setMovieData(it!!.toMutableList())
             movieRecyclerView.adapter = movieAdapter
         })

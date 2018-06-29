@@ -1,8 +1,9 @@
-package com.sudhirkhanger.genius
+package com.sudhirkhanger.genius.ui
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import com.sudhirkhanger.genius.BuildConfig
 import com.sudhirkhanger.genius.model.Movie
 import com.sudhirkhanger.genius.model.MovieList
 import com.sudhirkhanger.genius.retrofit.TheMovieDbService
