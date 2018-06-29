@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
     // https://proandroiddev.com/viewmodel-with-dagger2-architecture-components-2e06f06c9455
     @Inject
-    lateinit var daggerViewModelFactory: DaggerViewModelFactory
+    lateinit var mainViewModelFactory: MainViewModelFactory
 
     @Inject
     @field:ActivityContext
@@ -86,8 +86,8 @@ class MainActivity : AppCompatActivity() {
             adapter = movieAdapter
         }
 
-        val daggerViewModel = ViewModelProviders.of(this, daggerViewModelFactory)
-                .get(DaggerViewModel::class.java)
+        val daggerViewModel = ViewModelProviders.of(this, mainViewModelFactory)
+                .get(MainViewModel::class.java)
         daggerViewModel.getMovies().observe(this, Observer {
             movieAdapter.setMovieData(it!!.toMutableList())
         })
