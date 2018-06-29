@@ -3,8 +3,9 @@ package com.sudhirkhanger.genius.ui
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.sudhirkhanger.genius.retrofit.TheMovieDbService
+import javax.inject.Inject
 
-class DaggerViewModelFactory(private var theMovieDbService: TheMovieDbService) :
+class DaggerViewModelFactory @Inject constructor(private val theMovieDbService: TheMovieDbService) :
         ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

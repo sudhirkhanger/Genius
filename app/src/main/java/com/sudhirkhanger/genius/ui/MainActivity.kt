@@ -32,9 +32,7 @@ import com.sudhirkhanger.genius.di.component.DaggerMainActivityComponent
 import com.sudhirkhanger.genius.di.component.MainActivityComponent
 import com.sudhirkhanger.genius.di.module.MainActivityContextModule
 import com.sudhirkhanger.genius.di.qualifier.ActivityContext
-import com.sudhirkhanger.genius.di.qualifier.ApplicationContext
 import com.sudhirkhanger.genius.model.Movie
-import com.sudhirkhanger.genius.retrofit.TheMovieDbService
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -46,15 +44,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mainActivityComponent: MainActivityComponent
 
+    // https://proandroiddev.com/viewmodel-with-dagger2-architecture-components-2e06f06c9455
     @Inject
-    lateinit var theMovieDbService: TheMovieDbService
-
-//    @Inject
-//    lateinit var daggerViewModelFactory: DaggerViewModelFactory
-
-    @Inject
-    @field:ApplicationContext
-    lateinit var appContext: Context
+    lateinit var daggerViewModelFactory: DaggerViewModelFactory
 
     @Inject
     @field:ActivityContext
@@ -94,19 +86,10 @@ class MainActivity : AppCompatActivity() {
             adapter = movieAdapter
         }
 
-//        val mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-//        mainViewModel.getMovies().observe(this, Observer {
-//            movieAdapter.setMovieData(it!!.toMutableList())
-//            movieRecyclerView.adapter = movieAdapter
-//        })
-
-        val daggerViewModelFactory = DaggerViewModelFactory(theMovieDbService)
-//        val daggerViewModel = ViewModelProviders.of(this, daggerViewModelFactory)
         val daggerViewModel = ViewModelProviders.of(this, daggerViewModelFactory)
                 .get(DaggerViewModel::class.java)
         daggerViewModel.getMovies().observe(this, Observer {
             movieAdapter.setMovieData(it!!.toMutableList())
-            movieRecyclerView.adapter = movieAdapter
         })
     }
 }

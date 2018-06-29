@@ -13,7 +13,7 @@ import retrofit2.Response
 import timber.log.Timber
 import javax.inject.Inject
 
-class DaggerViewModel(private var theMovieDbService: TheMovieDbService) : ViewModel() {
+class DaggerViewModel @Inject constructor(private val theMovieDbService: TheMovieDbService) : ViewModel() {
 
     companion object {
         lateinit var moviesList: MutableLiveData<List<Movie?>>
@@ -21,6 +21,7 @@ class DaggerViewModel(private var theMovieDbService: TheMovieDbService) : ViewMo
     }
 
     fun getMovies(): LiveData<List<Movie?>> {
+        Timber.e("getMovies called")
         moviesList = MutableLiveData()
         loadMovies()
         return moviesList
