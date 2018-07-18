@@ -16,16 +16,15 @@
 
 package com.sudhirkhanger.genius.retrofit
 
-import com.sudhirkhanger.genius.model.MovieList
+import com.sudhirkhanger.genius.data.MoviesList
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
-import javax.inject.Inject
 
 interface TheMovieDbService {
 
     @GET("movie/popular")
     fun getPopularMovies(@Query("page") page: Int,
                          @Query("api_key") api_key: String):
-            Call<MovieList>
+            Call<MoviesList>
 }

@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.sudhirkhanger.genius.model
+package com.sudhirkhanger.genius.data
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class MovieList(
+data class MoviesList(
 
         @field:SerializedName("page")
         val page: Int? = null,
@@ -30,14 +30,14 @@ data class MovieList(
         val totalPages: Int? = null,
 
         @field:SerializedName("results")
-        val results: List<Movie?>? = null,
+        val results: List<MovieEntry?>? = null,
 
         @field:SerializedName("total_results")
         val totalResults: Int? = null
 ) : Parcelable
 
 @Parcelize
-data class Movie(
+data class MovieEntry(
 
         @field:SerializedName("overview")
         val overview: String? = null,

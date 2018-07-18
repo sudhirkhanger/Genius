@@ -18,12 +18,11 @@ package com.sudhirkhanger.genius.ui
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
 import com.sudhirkhanger.genius.R
-import com.sudhirkhanger.genius.model.Movie
+import com.sudhirkhanger.genius.data.MovieEntry
 import timber.log.Timber
 
 class DetailActivity : AppCompatActivity() {
@@ -32,7 +31,7 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        val movie = intent.extras.getParcelable(MainActivity.KEY_MOVIE) as Movie
+        val movie = intent.extras.getParcelable(MainActivity.KEY_MOVIE) as MovieEntry
         Timber.e(movie.title)
 
         val title = findViewById<TextView>(R.id.title_text_view)

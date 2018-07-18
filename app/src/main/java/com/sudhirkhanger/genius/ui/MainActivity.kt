@@ -32,7 +32,7 @@ import com.sudhirkhanger.genius.di.component.DaggerMainActivityComponent
 import com.sudhirkhanger.genius.di.component.MainActivityComponent
 import com.sudhirkhanger.genius.di.module.MainActivityContextModule
 import com.sudhirkhanger.genius.di.qualifier.ActivityContext
-import com.sudhirkhanger.genius.model.Movie
+import com.sudhirkhanger.genius.data.MovieEntry
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -56,10 +56,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var movieAdapter: MovieAdapter
 
     private val movieClickListener = object : MovieAdapter.OnMovieClickListener {
-        override fun onMovieClick(movie: Movie) {
+        override fun onMovieClick(movieEntry: MovieEntry) {
             val detailActivityIntent = Intent(activityContext,
                     DetailActivity::class.java)
-            detailActivityIntent.putExtra(KEY_MOVIE, movie)
+            detailActivityIntent.putExtra(KEY_MOVIE, movieEntry)
             startActivity(detailActivityIntent)
         }
     }
