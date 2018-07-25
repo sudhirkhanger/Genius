@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sudhirkhanger.genius.data
+package com.sudhirkhanger.genius.data.database
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
@@ -36,9 +36,9 @@ data class MoviesList(
         val totalResults: Int? = null
 ) : Parcelable
 
+
 @Parcelize
 data class MovieEntry(
-
         @field:SerializedName("overview")
         val overview: String? = null,
 

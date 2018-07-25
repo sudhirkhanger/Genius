@@ -23,7 +23,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.squareup.picasso.Picasso
 import com.sudhirkhanger.genius.R
-import com.sudhirkhanger.genius.data.MovieEntry
+import com.sudhirkhanger.genius.data.database.MovieEntry
 
 class MovieAdapter(
         private val onMovieClick: OnMovieClickListener) :

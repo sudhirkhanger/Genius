@@ -22,14 +22,14 @@ import com.sudhirkhanger.genius.di.module.ContextModule
 import com.sudhirkhanger.genius.di.module.RetrofitModule
 import com.sudhirkhanger.genius.di.qualifier.ApplicationContext
 import com.sudhirkhanger.genius.di.scopes.ApplicationScope
-import com.sudhirkhanger.genius.retrofit.TheMovieDbService
+import com.sudhirkhanger.genius.data.network.TmdbService
 import dagger.Component
 
 @ApplicationScope
 @Component(modules = [ContextModule::class, RetrofitModule::class])
 interface ApplicationComponent {
 
-    fun getApiInterface(): TheMovieDbService
+    fun getTmdbService(): TmdbService
 
     @ApplicationContext
     fun getContext(): Context

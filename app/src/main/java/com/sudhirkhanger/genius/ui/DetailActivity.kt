@@ -22,7 +22,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
 import com.sudhirkhanger.genius.R
-import com.sudhirkhanger.genius.data.MovieEntry
+import com.sudhirkhanger.genius.data.database.MovieEntry
 import timber.log.Timber
 
 class DetailActivity : AppCompatActivity() {
