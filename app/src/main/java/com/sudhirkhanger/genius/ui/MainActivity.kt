@@ -25,17 +25,13 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.sudhirkhanger.genius.AppApplication
-import com.sudhirkhanger.genius.AppExecutors
 import com.sudhirkhanger.genius.R
 import com.sudhirkhanger.genius.adapter.MovieAdapter
 import com.sudhirkhanger.genius.data.database.MovieEntry
-import com.sudhirkhanger.genius.data.network.MovieNetworkDataSource
-import com.sudhirkhanger.genius.data.network.TmdbService
 import com.sudhirkhanger.genius.di.component.ApplicationComponent
 import com.sudhirkhanger.genius.di.component.DaggerMainActivityComponent
 import com.sudhirkhanger.genius.di.module.MainActivityContextModule
 import com.sudhirkhanger.genius.di.qualifier.ActivityContext
-import com.sudhirkhanger.genius.di.qualifier.ApplicationContext
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -45,27 +41,12 @@ class MainActivity : AppCompatActivity() {
         private const val COL = 2
     }
 
-    // https://proandroiddev.com/viewmodel-with-dagger2-architecture-components-2e06f06c9455
     @Inject
     lateinit var mainViewModelFactory: MainViewModelFactory
 
     @Inject
     @field:ActivityContext
     lateinit var activityContext: Context
-
-    // TODO remove
-    @Inject
-    @field:ApplicationContext
-    lateinit var appContext: Context
-
-    // TODO remove
-//    @Inject
-//    lateinit var tmdbService: TmdbService
-
-    // TODO remove
-//    @Inject
-//    @field:ApplicationContext
-//    lateinit var appExecutors: AppExecutors
 
     private lateinit var movieRecyclerView: RecyclerView
     private lateinit var movieAdapter: MovieAdapter
@@ -99,9 +80,6 @@ class MainActivity : AppCompatActivity() {
             layoutManager = GridLayoutManager(activityContext, COL)
             adapter = movieAdapter
         }
-
-        val movieNetworkDataSource = MovieNetworkDataSource(appContext, AppExecutors(), applicationComponent.getTmdbService())
-        movieNetworkDataSource.fetchMovieList()
 
         val daggerViewModel = ViewModelProviders.of(this, mainViewModelFactory)
                 .get(MainViewModel::class.java)
