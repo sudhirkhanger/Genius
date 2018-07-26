@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sudhirkhanger.genius.adapter
+package com.sudhirkhanger.genius.ui.list
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

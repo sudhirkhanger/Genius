@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sudhirkhanger.genius.ui
+package com.sudhirkhanger.genius.ui.detail
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -23,6 +23,7 @@ import android.widget.TextView
 import com.squareup.picasso.Picasso
 import com.sudhirkhanger.genius.R
 import com.sudhirkhanger.genius.data.database.MovieEntry
+import com.sudhirkhanger.genius.ui.list.MainActivity
 import timber.log.Timber
 
 class DetailActivity : AppCompatActivity() {

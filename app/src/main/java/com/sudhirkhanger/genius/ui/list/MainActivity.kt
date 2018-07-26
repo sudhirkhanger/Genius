@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sudhirkhanger.genius.ui
+package com.sudhirkhanger.genius.ui.list
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -26,12 +26,12 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.sudhirkhanger.genius.AppApplication
 import com.sudhirkhanger.genius.R
-import com.sudhirkhanger.genius.adapter.MovieAdapter
 import com.sudhirkhanger.genius.data.database.MovieEntry
 import com.sudhirkhanger.genius.di.component.ApplicationComponent
 import com.sudhirkhanger.genius.di.component.DaggerMainActivityComponent
 import com.sudhirkhanger.genius.di.module.MainActivityContextModule
 import com.sudhirkhanger.genius.di.qualifier.ActivityContext
+import com.sudhirkhanger.genius.ui.detail.DetailActivity
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {

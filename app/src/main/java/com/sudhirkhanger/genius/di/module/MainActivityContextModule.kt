@@ -19,7 +19,7 @@ package com.sudhirkhanger.genius.di.module
 import android.content.Context
 import com.sudhirkhanger.genius.di.qualifier.ActivityContext
 import com.sudhirkhanger.genius.di.scopes.ActivityScope
-import com.sudhirkhanger.genius.ui.MainActivity
+import com.sudhirkhanger.genius.ui.list.MainActivity
 import dagger.Module
 import dagger.Provides
 

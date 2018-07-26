@@ -1,4 +1,4 @@
-package com.sudhirkhanger.genius.ui
+package com.sudhirkhanger.genius.ui.list
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
