@@ -43,6 +43,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.sudhirkhanger.genius.ui.MainActivity" />
         </activity>
+
+        <service
+            android:name=".data.network.TmdbSyncIntentService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 
 </manifest>

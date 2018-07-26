@@ -3,6 +3,7 @@ package com.sudhirkhanger.genius.data.network
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.content.Context
+import android.content.Intent
 import com.sudhirkhanger.genius.AppExecutors
 import com.sudhirkhanger.genius.BuildConfig
 import com.sudhirkhanger.genius.data.database.MoviesList
@@ -19,6 +20,11 @@ class MovieNetworkDataSource(private val context: Context,
 
     fun getMovieList(): LiveData<MoviesList> {
         return movieListLiveData
+    }
+
+    fun startFetchMovieService() {
+        val intent = Intent(context, TmdbSyncIntentService::class.java)
+        context.startService(intent)
     }
 
     fun fetchMovieList() {

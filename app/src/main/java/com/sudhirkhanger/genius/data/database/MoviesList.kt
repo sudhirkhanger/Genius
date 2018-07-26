@@ -16,7 +16,9 @@
 
 package com.sudhirkhanger.genius.data.database
 
+import android.arch.persistence.room.*
 import android.os.Parcelable
+import android.support.annotation.NonNull
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
@@ -36,48 +38,65 @@ data class MoviesList(
         val totalResults: Int? = null
 ) : Parcelable
 
-
 @Parcelize
+@Entity(tableName = "movie")
 data class MovieEntry(
+
         @field:SerializedName("overview")
-        val overview: String? = null,
+        var overview: String? = null,
 
+        @ColumnInfo(name = "original_language")
         @field:SerializedName("original_language")
-        val originalLanguage: String? = null,
+        var originalLanguage: String? = null,
 
+        @ColumnInfo(name = "original_title")
         @field:SerializedName("original_title")
-        val originalTitle: String? = null,
+        var originalTitle: String? = null,
 
         @field:SerializedName("video")
-        val video: Boolean? = null,
+        var video: Boolean? = null,
 
         @field:SerializedName("title")
-        val title: String? = null,
+        var title: String? = null,
 
+        @TypeConverters(ListConverter::class)
+        @ColumnInfo(name = "genre_ids")
         @field:SerializedName("genre_ids")
-        val genreIds: List<Int?>? = null,
+        var genreIds: List<Int?>? = null,
 
+        @ColumnInfo(name = "poster_path")
         @field:SerializedName("poster_path")
-        val posterPath: String? = null,
+        var posterPath: String? = null,
 
+        @ColumnInfo(name = "backdrop_path")
         @field:SerializedName("backdrop_path")
-        val backdropPath: String? = null,
+        var backdropPath: String? = null,
 
+        @ColumnInfo(name = "release_date")
         @field:SerializedName("release_date")
-        val releaseDate: String? = null,
+        var releaseDate: String? = null,
 
+        @ColumnInfo(name = "vote_average")
         @field:SerializedName("vote_average")
-        val voteAverage: Double? = null,
+        var voteAverage: Double? = null,
 
         @field:SerializedName("popularity")
-        val popularity: Double? = null,
+        var popularity: Double? = null,
 
+        @PrimaryKey
+        @NonNull
         @field:SerializedName("id")
-        val id: Int? = null,
+        var id: Int? = null,
 
         @field:SerializedName("adult")
-        val adult: Boolean? = null,
+        var adult: Boolean? = null,
 
+        @ColumnInfo(name = "vote_count")
         @field:SerializedName("vote_count")
-        val voteCount: Int? = null
-) : Parcelable
+        var voteCount: Int? = null
+) : Parcelable {
+    @Ignore
+    constructor() : this(null, null, null, null, null,
+            null, null, null, null, null,
+            null, null, null, null)
+}

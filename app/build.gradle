@@ -72,4 +72,9 @@ dependencies {
 
     implementation "android.arch.lifecycle:extensions:$rootProject.lifecycle_version"
     kapt "android.arch.lifecycle:compiler:$rootProject.lifecycle_version"
+
+    implementation "android.arch.persistence.room:runtime:$rootProject.room_version"
+    kapt "android.arch.persistence.room:compiler:$rootProject.room_version"
+
+     implementation "com.google.code.gson:gson:$rootProject.gson_version"
 }

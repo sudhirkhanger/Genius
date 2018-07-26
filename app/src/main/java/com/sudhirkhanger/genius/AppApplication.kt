@@ -18,6 +18,7 @@ package com.sudhirkhanger.genius
 
 import android.app.Activity
 import android.app.Application
+import android.content.Context
 import com.sudhirkhanger.genius.di.component.ApplicationComponent
 import com.sudhirkhanger.genius.di.component.DaggerApplicationComponent
 import com.sudhirkhanger.genius.di.module.ContextModule
@@ -50,4 +51,7 @@ class AppApplication : Application() {
 
     fun get(activity: Activity): AppApplication =
             activity.application as AppApplication
+
+    fun get(context: Context): AppApplication =
+            context as AppApplication
 }
