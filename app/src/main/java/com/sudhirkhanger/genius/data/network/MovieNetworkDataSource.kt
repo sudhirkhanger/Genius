@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.content.Context
 import android.content.Intent
+import android.support.v4.app.JobIntentService
 import com.sudhirkhanger.genius.AppExecutors
 import com.sudhirkhanger.genius.BuildConfig
 import com.sudhirkhanger.genius.data.database.MoviesList
@@ -14,7 +15,7 @@ import timber.log.Timber
 
 class MovieNetworkDataSource(private val context: Context,
                              private val appExecutors: AppExecutors,
-                             private val tmdbService: TmdbService) {
+                             private val movieService: MovieService) {
 
     private var movieListLiveData = MutableLiveData<MoviesList>()
 
@@ -23,20 +24,26 @@ class MovieNetworkDataSource(private val context: Context,
     }
 
     fun startFetchMovieService() {
-        val intent = Intent(context, TmdbSyncIntentService::class.java)
-        context.startService(intent)
+        Timber.e("calling intent service")
+        val intent = Intent(context, MovieSyncIntentService::class.java)
+        JobIntentService
+                .enqueueWork(context, MovieSyncIntentService::class.java, 1000, intent)
     }
 
     fun fetchMovieList() {
-        val call = tmdbService.getPopularMovies(1, BuildConfig.THE_MOVIE_DB_API_KEY)
-        call.enqueue(object : Callback<MoviesList?> {
-            override fun onFailure(call: Call<MoviesList?>?, t: Throwable?) {
-                Timber.e(t.toString())
-            }
+        Timber.e("Running network call")
+        appExecutors.networkIO().execute {
+            val call = movieService.getPopularMovies(1, BuildConfig.THE_MOVIE_DB_API_KEY)
+            call.enqueue(object : Callback<MoviesList?> {
+                override fun onFailure(call: Call<MoviesList?>?, t: Throwable?) {
+                    Timber.e(t.toString())
+                }
 
-            override fun onResponse(call: Call<MoviesList?>?, response: Response<MoviesList?>?) {
-                movieListLiveData.postValue(response?.body())
-            }
-        })
+                override fun onResponse(call: Call<MoviesList?>?, response: Response<MoviesList?>?) {
+                    Timber.e(response?.body()?.results?.get(0)?.title)
+                    movieListLiveData.postValue(response?.body())
+                }
+            })
+        }
     }
 }

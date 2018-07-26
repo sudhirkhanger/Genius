@@ -21,7 +21,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface TmdbService {
+interface MovieService {
 
     @GET("movie/popular")
     fun getPopularMovies(@Query("page") page: Int,

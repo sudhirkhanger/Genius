@@ -6,14 +6,14 @@ import android.arch.lifecycle.ViewModel
 import com.sudhirkhanger.genius.BuildConfig
 import com.sudhirkhanger.genius.data.database.MovieEntry
 import com.sudhirkhanger.genius.data.database.MoviesList
-import com.sudhirkhanger.genius.data.network.TmdbService
+import com.sudhirkhanger.genius.data.network.MovieService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(private val tmdbService: TmdbService) : ViewModel() {
+class MainViewModel @Inject constructor(private val movieService: MovieService) : ViewModel() {
 
     companion object {
         lateinit var moviesList: MutableLiveData<List<MovieEntry?>>
@@ -28,7 +28,7 @@ class MainViewModel @Inject constructor(private val tmdbService: TmdbService) : 
     }
 
     private fun loadMovies() {
-        val call = tmdbService.getPopularMovies(1, BuildConfig.THE_MOVIE_DB_API_KEY)
+        val call = movieService.getPopularMovies(1, BuildConfig.THE_MOVIE_DB_API_KEY)
         call.enqueue(object : Callback<MoviesList?> {
             override fun onFailure(call: Call<MoviesList?>?, t: Throwable?) {
                 Timber.e(t.toString())

@@ -17,7 +17,7 @@
 package com.sudhirkhanger.genius.di.module
 
 import com.sudhirkhanger.genius.di.scopes.ApplicationScope
-import com.sudhirkhanger.genius.data.network.TmdbService
+import com.sudhirkhanger.genius.data.network.MovieService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -30,8 +30,8 @@ class RetrofitModule {
 
     @Provides
     @ApplicationScope
-    fun getTmdbService(retroFit: Retrofit): TmdbService =
-            retroFit.create(TmdbService::class.java)
+    fun getTmdbService(retroFit: Retrofit): MovieService =
+            retroFit.create(MovieService::class.java)
 
     @Provides
     @ApplicationScope

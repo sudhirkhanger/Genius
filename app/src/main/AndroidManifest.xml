@@ -45,7 +45,7 @@
         </activity>
 
         <service
-            android:name=".data.network.TmdbSyncIntentService"
+            android:name=".data.network.MovieSyncIntentService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 
