@@ -18,15 +18,19 @@ package com.sudhirkhanger.genius.di.component
 
 import android.content.Context
 import com.sudhirkhanger.genius.AppApplication
+import com.sudhirkhanger.genius.data.network.MovieService
 import com.sudhirkhanger.genius.di.module.ContextModule
+import com.sudhirkhanger.genius.di.module.MovieDbModule
 import com.sudhirkhanger.genius.di.module.RetrofitModule
 import com.sudhirkhanger.genius.di.qualifier.ApplicationContext
 import com.sudhirkhanger.genius.di.scopes.ApplicationScope
-import com.sudhirkhanger.genius.data.network.MovieService
 import dagger.Component
 
 @ApplicationScope
-@Component(modules = [ContextModule::class, RetrofitModule::class])
+@Component(modules = [
+    ContextModule::class,
+    RetrofitModule::class,
+    MovieDbModule::class])
 interface ApplicationComponent {
 
     fun getMovieService(): MovieService

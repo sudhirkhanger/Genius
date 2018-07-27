@@ -19,6 +19,7 @@ package com.sudhirkhanger.genius
 import android.app.Activity
 import android.app.Application
 import android.content.Context
+import com.facebook.stetho.Stetho
 import com.sudhirkhanger.genius.di.component.ApplicationComponent
 import com.sudhirkhanger.genius.di.component.DaggerApplicationComponent
 import com.sudhirkhanger.genius.di.module.ContextModule
@@ -42,6 +43,8 @@ class AppApplication : Application() {
         super.onCreate()
         appComponent.injectApplication(this)
         instance = this
+
+        Stetho.initializeWithDefaults(this)
 
         if (BuildConfig.DEBUG)
             Timber.plant(Timber.DebugTree())

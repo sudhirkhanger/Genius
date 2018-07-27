@@ -76,5 +76,8 @@ dependencies {
     implementation "android.arch.persistence.room:runtime:$rootProject.room_version"
     kapt "android.arch.persistence.room:compiler:$rootProject.room_version"
 
-     implementation "com.google.code.gson:gson:$rootProject.gson_version"
+    implementation "com.google.code.gson:gson:$rootProject.gson_version"
+
+    implementation "com.facebook.stetho:stetho:$rootProject.stetho_version"
+    debugImplementation "com.amitshekhar.android:debug-db:$rootProject.debug_db_version"
 }
