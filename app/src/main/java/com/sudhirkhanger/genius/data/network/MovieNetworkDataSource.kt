@@ -12,10 +12,12 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
+import javax.inject.Inject
 
-class MovieNetworkDataSource(private val context: Context,
-                             private val appExecutors: AppExecutors,
-                             private val movieService: MovieService) {
+class MovieNetworkDataSource @Inject constructor(
+        private val context: Context,
+        private val appExecutors: AppExecutors,
+        private val movieService: MovieService) {
 
     private var movieListLiveData = MutableLiveData<MoviesList>()
 

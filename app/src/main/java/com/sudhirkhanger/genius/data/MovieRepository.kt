@@ -22,10 +22,12 @@ import com.sudhirkhanger.genius.data.database.MovieDao
 import com.sudhirkhanger.genius.data.database.MovieEntry
 import com.sudhirkhanger.genius.data.database.MoviesList
 import com.sudhirkhanger.genius.data.network.MovieNetworkDataSource
+import javax.inject.Inject
 
-class MovieRepository(private val movieDao: MovieDao,
-                      private val movieNetworkDataSource: MovieNetworkDataSource,
-                      private val executors: AppExecutors) {
+class MovieRepository @Inject constructor(
+        private val movieDao: MovieDao,
+        private val movieNetworkDataSource: MovieNetworkDataSource,
+        private val executors: AppExecutors) {
 
     private var isInitialized = false
 

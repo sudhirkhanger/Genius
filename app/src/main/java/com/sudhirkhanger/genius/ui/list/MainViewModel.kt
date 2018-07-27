@@ -17,42 +17,16 @@
 package com.sudhirkhanger.genius.ui.list
 
 import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.sudhirkhanger.genius.BuildConfig
+import com.sudhirkhanger.genius.data.MovieRepository
 import com.sudhirkhanger.genius.data.database.MovieEntry
-import com.sudhirkhanger.genius.data.database.MoviesList
-import com.sudhirkhanger.genius.data.network.MovieService
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import timber.log.Timber
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(private val movieService: MovieService) : ViewModel() {
+class MainViewModel @Inject constructor(private val movieRepository: MovieRepository) : ViewModel() {
 
-    companion object {
-        lateinit var moviesList: MutableLiveData<List<MovieEntry?>>
-        private set
-    }
+    private val movieList: LiveData<List<MovieEntry>> = movieRepository.getMovies()
 
-    fun getMovies(): LiveData<List<MovieEntry?>> {
-        Timber.e("getMovies called")
-        moviesList = MutableLiveData()
-        loadMovies()
-        return moviesList
-    }
-
-    private fun loadMovies() {
-        val call = movieService.getPopularMovies(1, BuildConfig.THE_MOVIE_DB_API_KEY)
-        call.enqueue(object : Callback<MoviesList?> {
-            override fun onFailure(call: Call<MoviesList?>?, t: Throwable?) {
-                Timber.e(t.toString())
-            }
-
-            override fun onResponse(call: Call<MoviesList?>?, response: Response<MoviesList?>?) {
-                moviesList.value = response?.body()?.results
-            }
-        })
+    fun getMovies(): LiveData<List<MovieEntry>> {
+        return movieList
     }
 }

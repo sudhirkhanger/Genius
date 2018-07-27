@@ -18,14 +18,14 @@ package com.sudhirkhanger.genius.ui.list
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.sudhirkhanger.genius.data.network.MovieService
+import com.sudhirkhanger.genius.data.MovieRepository
 import javax.inject.Inject
 
-class MainViewModelFactory @Inject constructor(private val movieService: MovieService) :
+class MainViewModelFactory @Inject constructor(private val movieRepository: MovieRepository) :
         ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         // https://stackoverflow.com/a/45517555/3034693
-        return modelClass.getConstructor(MovieService::class.java).newInstance(movieService)
+        return modelClass.getConstructor(MovieRepository::class.java).newInstance(movieRepository)
     }
 }

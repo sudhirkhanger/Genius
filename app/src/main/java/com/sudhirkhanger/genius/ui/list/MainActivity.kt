@@ -25,10 +25,13 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.sudhirkhanger.genius.AppApplication
+import com.sudhirkhanger.genius.AppExecutors
 import com.sudhirkhanger.genius.R
+import com.sudhirkhanger.genius.data.MovieRepository
+import com.sudhirkhanger.genius.data.database.MovieDao
 import com.sudhirkhanger.genius.data.database.MovieEntry
+import com.sudhirkhanger.genius.data.network.MovieNetworkDataSource
 import com.sudhirkhanger.genius.di.component.ApplicationComponent
-import com.sudhirkhanger.genius.di.component.DaggerMainActivityComponent
 import com.sudhirkhanger.genius.di.module.MainActivityContextModule
 import com.sudhirkhanger.genius.di.qualifier.ActivityContext
 import com.sudhirkhanger.genius.ui.detail.DetailActivity
@@ -40,9 +43,6 @@ class MainActivity : AppCompatActivity() {
         const val KEY_MOVIE = "movie_parcel"
         private const val COL = 2
     }
-
-    @Inject
-    lateinit var mainViewModelFactory: MainViewModelFactory
 
     @Inject
     @field:ActivityContext
@@ -81,9 +81,9 @@ class MainActivity : AppCompatActivity() {
             adapter = movieAdapter
         }
 
-        val daggerViewModel = ViewModelProviders.of(this, mainViewModelFactory)
+        val mainViewModel = ViewModelProviders.of(this, mainViewModelFactory)
                 .get(MainViewModel::class.java)
-        daggerViewModel.getMovies().observe(this, Observer {
+        mainViewModel.getMovies().observe(this, Observer {
             movieAdapter.setMovieData(it!!.toMutableList())
         })
     }
