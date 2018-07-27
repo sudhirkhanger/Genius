@@ -18,6 +18,12 @@ interface MovieDao {
     @Delete
     fun delete(movieEntry: MovieEntry)
 
-    @Query("SELECT * FROM movie WHERE id = :movidId")
-    fun findById(movidId: Int): LiveData<MovieEntry>
+    @Query("SELECT * FROM movie WHERE id = :movieId")
+    fun findMovieById(movieId: Int): LiveData<MovieEntry>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun bulkInsert(vararg movieEntry: MovieEntry?)
+
+    @Query("DELETE FROM movie")
+    fun deleteOldData()
 }
