@@ -33,5 +33,5 @@ class MainActivityContextModule(private var mainActivity: MainActivity) {
     @Provides
     @ActivityScope
     @ActivityContext
-    fun provideContext(): Context = mainActivity.activityContext
+    fun provideContext(): Context = mainActivity
 }

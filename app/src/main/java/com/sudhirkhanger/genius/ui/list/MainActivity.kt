@@ -25,13 +25,11 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.sudhirkhanger.genius.AppApplication
-import com.sudhirkhanger.genius.AppExecutors
 import com.sudhirkhanger.genius.R
 import com.sudhirkhanger.genius.data.MovieRepository
-import com.sudhirkhanger.genius.data.database.MovieDao
 import com.sudhirkhanger.genius.data.database.MovieEntry
-import com.sudhirkhanger.genius.data.network.MovieNetworkDataSource
 import com.sudhirkhanger.genius.di.component.ApplicationComponent
+import com.sudhirkhanger.genius.di.component.DaggerMainActivityComponent
 import com.sudhirkhanger.genius.di.module.MainActivityContextModule
 import com.sudhirkhanger.genius.di.qualifier.ActivityContext
 import com.sudhirkhanger.genius.ui.detail.DetailActivity
@@ -48,12 +46,15 @@ class MainActivity : AppCompatActivity() {
     @field:ActivityContext
     lateinit var activityContext: Context
 
+    @Inject
+    lateinit var movieRepository: MovieRepository
+
     private lateinit var movieRecyclerView: RecyclerView
     private lateinit var movieAdapter: MovieAdapter
 
     private val movieClickListener = object : MovieAdapter.OnMovieClickListener {
         override fun onMovieClick(movieEntry: MovieEntry) {
-            val detailActivityIntent = Intent(activityContext,
+            val detailActivityIntent = Intent(this@MainActivity,
                     DetailActivity::class.java)
             detailActivityIntent.putExtra(KEY_MOVIE, movieEntry)
             startActivity(detailActivityIntent)
@@ -64,22 +65,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val applicationComponent: ApplicationComponent = AppApplication.instance.get(this)
+        val applicationComponent: ApplicationComponent = AppApplication.instance.get(this@MainActivity)
                 .getApplicationComponent()
 
         DaggerMainActivityComponent
                 .builder()
-                .mainActivityContextModule(MainActivityContextModule(this))
+                .mainActivityContextModule(MainActivityContextModule(this@MainActivity))
                 .applicationComponent(applicationComponent)
                 .build()
-                .injectMainActivity(this)
+                .injectMainActivity(this@MainActivity)
 
         movieAdapter = MovieAdapter(movieClickListener)
         movieRecyclerView = findViewById<RecyclerView>(R.id.movie_recycler_view).apply {
             setHasFixedSize(true)
-            layoutManager = GridLayoutManager(activityContext, COL)
+            layoutManager = GridLayoutManager(this@MainActivity, COL)
             adapter = movieAdapter
         }
+
+        val mainViewModelFactory = MainViewModelFactory(movieRepository)
 
         val mainViewModel = ViewModelProviders.of(this, mainViewModelFactory)
                 .get(MainViewModel::class.java)

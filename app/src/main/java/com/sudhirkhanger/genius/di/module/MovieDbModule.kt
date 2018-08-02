@@ -25,11 +25,11 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class MovieDbModule {
+class MovieDbModule(private val app: Application) {
 
     @Provides
     @ApplicationScope
-    fun getMovieDb(app: Application): MovieDb {
+    fun getMovieDb(): MovieDb {
         return Room
                 .databaseBuilder(app, MovieDb::class.java, "movie.db")
                 .fallbackToDestructiveMigration()

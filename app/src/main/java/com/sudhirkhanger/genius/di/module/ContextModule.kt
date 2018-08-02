@@ -17,6 +17,7 @@
 package com.sudhirkhanger.genius.di.module
 
 import android.content.Context
+import com.sudhirkhanger.genius.AppExecutors
 import com.sudhirkhanger.genius.di.qualifier.ApplicationContext
 import com.sudhirkhanger.genius.di.scopes.ApplicationScope
 import dagger.Module
@@ -29,4 +30,9 @@ class ContextModule(private var context: Context) {
     @ApplicationScope
     @ApplicationContext
     fun provideContext(): Context = context
+
+    @Provides
+    @ApplicationScope
+    @ApplicationContext
+    fun provideAppExecutor(): AppExecutors = AppExecutors()
 }

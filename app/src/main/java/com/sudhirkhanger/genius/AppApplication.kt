@@ -18,11 +18,11 @@ package com.sudhirkhanger.genius
 
 import android.app.Activity
 import android.app.Application
-import android.content.Context
 import com.facebook.stetho.Stetho
 import com.sudhirkhanger.genius.di.component.ApplicationComponent
 import com.sudhirkhanger.genius.di.component.DaggerApplicationComponent
 import com.sudhirkhanger.genius.di.module.ContextModule
+import com.sudhirkhanger.genius.di.module.MovieDbModule
 import timber.log.Timber
 
 class AppApplication : Application() {
@@ -36,6 +36,7 @@ class AppApplication : Application() {
         DaggerApplicationComponent
                 .builder()
                 .contextModule(ContextModule(this))
+                .movieDbModule(MovieDbModule(this))
                 .build()
     }
 
@@ -54,7 +55,4 @@ class AppApplication : Application() {
 
     fun get(activity: Activity): AppApplication =
             activity.application as AppApplication
-
-    fun get(context: Context): AppApplication =
-            context as AppApplication
 }

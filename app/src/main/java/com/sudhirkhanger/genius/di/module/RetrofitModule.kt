@@ -16,8 +16,12 @@
 
 package com.sudhirkhanger.genius.di.module
 
-import com.sudhirkhanger.genius.di.scopes.ApplicationScope
+import android.content.Context
+import com.sudhirkhanger.genius.AppExecutors
+import com.sudhirkhanger.genius.data.network.MovieNetworkDataSource
 import com.sudhirkhanger.genius.data.network.MovieService
+import com.sudhirkhanger.genius.di.qualifier.ApplicationContext
+import com.sudhirkhanger.genius.di.scopes.ApplicationScope
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -30,7 +34,15 @@ class RetrofitModule {
 
     @Provides
     @ApplicationScope
-    fun getTmdbService(retroFit: Retrofit): MovieService =
+    @ApplicationContext
+    fun getMovieNetworkDataSource(context: Context,
+                                  executors: AppExecutors,
+                                  movieService: MovieService) =
+            MovieNetworkDataSource(context, executors, movieService)
+
+    @Provides
+    @ApplicationScope
+    fun getMovieService(retroFit: Retrofit): MovieService =
             retroFit.create(MovieService::class.java)
 
     @Provides

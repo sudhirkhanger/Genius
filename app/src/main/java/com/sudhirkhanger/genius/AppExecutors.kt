@@ -18,12 +18,9 @@ package com.sudhirkhanger.genius
 
 import android.os.Handler
 import android.os.Looper
-
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
-
 import javax.inject.Inject
-import javax.inject.Singleton
 
 /**
  * Global executor pools for the whole application.
@@ -34,7 +31,6 @@ import javax.inject.Singleton
  * https://raw.githubusercontent.com/googlesamples/android-architecture-components/master/
  * GithubBrowserSample/app/src/main/java/com/android/example/github/AppExecutors.kt
  */
-@Singleton
 open class AppExecutors(
         private val diskIO: Executor,
         private val networkIO: Executor,
