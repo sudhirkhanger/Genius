@@ -24,6 +24,7 @@ class MovieNetworkDataSource @Inject constructor(
     private var movieListLiveData = MutableLiveData<MoviesList>()
 
     fun getMovieList(): LiveData<MoviesList> {
+        Timber.e("start the live data call")
         return movieListLiveData
     }
 
@@ -44,7 +45,8 @@ class MovieNetworkDataSource @Inject constructor(
                 }
 
                 override fun onResponse(call: Call<MoviesList?>?, response: Response<MoviesList?>?) {
-                    Timber.e(response?.body()?.results?.get(0)?.title)
+                    val size = response?.body()?.results?.size
+                    Timber.e(response?.body()?.results?.get(0)?.title + " " + size)
                     movieListLiveData.postValue(response?.body())
                 }
             })

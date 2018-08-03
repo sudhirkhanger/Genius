@@ -53,6 +53,5 @@ class AppApplication : Application() {
 
     fun getApplicationComponent(): ApplicationComponent = appComponent
 
-    fun get(activity: Activity): AppApplication =
-            activity.application as AppApplication
+    fun get(activity: Activity): AppApplication = activity.application as AppApplication
 }

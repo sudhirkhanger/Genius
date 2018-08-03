@@ -22,6 +22,7 @@ import com.sudhirkhanger.genius.data.database.MovieDao
 import com.sudhirkhanger.genius.data.database.MovieEntry
 import com.sudhirkhanger.genius.data.database.MoviesList
 import com.sudhirkhanger.genius.data.network.MovieNetworkDataSource
+import timber.log.Timber
 import javax.inject.Inject
 
 class MovieRepository @Inject constructor(
@@ -32,9 +33,11 @@ class MovieRepository @Inject constructor(
     private var isInitialized = false
 
     init {
+        Timber.e("repository init called")
         val movieData: LiveData<MoviesList> = movieNetworkDataSource.getMovieList()
         movieData.observeForever {
             executors.diskIO().execute {
+                Timber.e(it?.results?.get(0)?.title)
                 deleteExistingData()
                 movieDao.bulkInsert(*it?.results!!.toTypedArray())
             }
@@ -42,6 +45,7 @@ class MovieRepository @Inject constructor(
     }
 
     private fun initializeData() {
+        Timber.e("initialize the data")
         if (isInitialized) {
             isInitialized = true
             return
@@ -61,10 +65,12 @@ class MovieRepository @Inject constructor(
     }
 
     private fun deleteExistingData() {
+        Timber.e("delete data")
         movieDao.deleteOldData()
     }
 
     private fun startFetchMovieService() {
+        Timber.e("Start the fetch Service")
         movieNetworkDataSource.startFetchMovieService()
     }
 }
