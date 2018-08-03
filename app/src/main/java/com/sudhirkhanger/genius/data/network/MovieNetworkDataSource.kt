@@ -21,12 +21,9 @@ class MovieNetworkDataSource @Inject constructor(
         private val appExecutors: AppExecutors,
         private val movieService: MovieService) {
 
-    private var movieListLiveData = MutableLiveData<MoviesList>()
+    private val movieListLiveData = MutableLiveData<MoviesList>()
 
-    fun getMovieList(): LiveData<MoviesList> {
-        Timber.e("start the live data call")
-        return movieListLiveData
-    }
+    fun getMovieList(): LiveData<MoviesList> = movieListLiveData
 
     fun startFetchMovieService() {
         Timber.e("calling intent service")
