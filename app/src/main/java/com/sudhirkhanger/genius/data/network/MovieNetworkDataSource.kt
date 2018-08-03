@@ -9,12 +9,14 @@ import com.sudhirkhanger.genius.AppExecutors
 import com.sudhirkhanger.genius.BuildConfig
 import com.sudhirkhanger.genius.data.database.MoviesList
 import com.sudhirkhanger.genius.di.qualifier.ApplicationContext
+import com.sudhirkhanger.genius.di.scopes.ApplicationScope
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
 import javax.inject.Inject
 
+@ApplicationScope
 class MovieNetworkDataSource @Inject constructor(
         @ApplicationContext
         private val context: Context,
