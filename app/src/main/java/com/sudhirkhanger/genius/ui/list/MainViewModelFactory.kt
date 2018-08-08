@@ -24,8 +24,7 @@ import javax.inject.Inject
 class MainViewModelFactory @Inject constructor(private val movieRepository: MovieRepository) :
         ViewModelProvider.NewInstanceFactory() {
 
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        // https://stackoverflow.com/a/45517555/3034693
-        return modelClass.getConstructor(MovieRepository::class.java).newInstance(movieRepository)
-    }
+    // https://stackoverflow.com/a/45517555/3034693
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T =
+            modelClass.getConstructor(MovieRepository::class.java).newInstance(movieRepository)
 }
