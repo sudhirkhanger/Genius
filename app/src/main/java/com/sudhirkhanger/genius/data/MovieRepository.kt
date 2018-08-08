@@ -64,14 +64,8 @@ class MovieRepository @Inject constructor(
         return movieDao.findMovieById(movieId)
     }
 
-    private fun deleteExistingData() {
-        Timber.e("delete data")
-        movieDao.deleteOldData()
-    }
+    private fun deleteExistingData() = movieDao.deleteOldData()
 
-    private fun startFetchMovieService() {
-        Timber.e("Start the fetch Service")
-        movieNetworkDataSource.startFetchMovieService()
-    }
+    private fun startFetchMovieService() = movieNetworkDataSource.startFetchMovieService()
 }
 
