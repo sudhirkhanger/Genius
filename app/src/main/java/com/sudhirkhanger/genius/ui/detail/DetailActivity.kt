@@ -24,7 +24,6 @@ import com.squareup.picasso.Picasso
 import com.sudhirkhanger.genius.R
 import com.sudhirkhanger.genius.data.database.MovieEntry
 import com.sudhirkhanger.genius.ui.list.MainActivity
-import timber.log.Timber
 
 class DetailActivity : AppCompatActivity() {
 
@@ -33,7 +32,6 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail)
 
         val movie = intent.extras.getParcelable(MainActivity.KEY_MOVIE) as MovieEntry
-        Timber.e(movie.title)
 
         val title = findViewById<TextView>(R.id.title_text_view)
         val rating = findViewById<TextView>(R.id.ratings_text_view)
@@ -47,6 +45,7 @@ class DetailActivity : AppCompatActivity() {
         releaseDate.text = movie.releaseDate
         overview.text = movie.overview
 
+        // TODO replace picasso load with a utility function
         Picasso.with(this)
                 .load("https://image.tmdb.org/t/p/w185/${movie.posterPath}")
                 .into(posterImageView)

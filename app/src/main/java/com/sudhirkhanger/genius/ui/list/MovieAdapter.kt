@@ -46,6 +46,7 @@ class MovieAdapter(private val movieClick: (MovieEntry) -> Unit) :
             RecyclerView.ViewHolder(view) {
         private val movieImage = view.findViewById<ImageView>(R.id.movie_image_view)
 
+        // TODO replace picasso load with a utility function
         fun bindMovie(movieEntry: MovieEntry) {
             with(movieEntry) {
                 Picasso.with(itemView.context)
