@@ -44,8 +44,6 @@ class MovieNetworkDataSource @Inject constructor(
                 }
 
                 override fun onResponse(call: Call<MoviesList?>?, response: Response<MoviesList?>?) {
-                    val size = response?.body()?.results?.size
-                    Timber.e(response?.body()?.results?.get(0)?.title + " " + size)
                     movieListLiveData.postValue(response?.body())
                 }
             })
