@@ -26,7 +26,6 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.sudhirkhanger.genius.AppApplication
 import com.sudhirkhanger.genius.R
-import com.sudhirkhanger.genius.data.MovieRepository
 import com.sudhirkhanger.genius.data.database.MovieEntry
 import com.sudhirkhanger.genius.di.component.ApplicationComponent
 import com.sudhirkhanger.genius.di.component.DaggerMainActivityComponent
@@ -47,7 +46,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var activityContext: Context
 
     @Inject
-    lateinit var movieRepository: MovieRepository
+    lateinit var mainViewModelFactory: MainViewModelFactory
 
     private lateinit var movieRecyclerView: RecyclerView
     private lateinit var movieAdapter: MovieAdapter
@@ -81,8 +80,6 @@ class MainActivity : AppCompatActivity() {
             layoutManager = GridLayoutManager(this@MainActivity, COL)
             adapter = movieAdapter
         }
-
-        val mainViewModelFactory = MainViewModelFactory(movieRepository)
 
         val mainViewModel = ViewModelProviders.of(this, mainViewModelFactory)
                 .get(MainViewModel::class.java)
