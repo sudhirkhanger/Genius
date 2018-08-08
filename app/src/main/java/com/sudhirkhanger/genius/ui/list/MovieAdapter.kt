@@ -25,20 +25,15 @@ import com.squareup.picasso.Picasso
 import com.sudhirkhanger.genius.R
 import com.sudhirkhanger.genius.data.database.MovieEntry
 
-class MovieAdapter(
-        private val onMovieClick: OnMovieClickListener) :
+class MovieAdapter(private val movieClick: (MovieEntry) -> Unit) :
         RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     private var movieEntries: MutableList<MovieEntry?> = mutableListOf()
 
-    interface OnMovieClickListener {
-        fun onMovieClick(movieEntry: MovieEntry)
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.movie_list_item, parent, false)
-        return MovieViewHolder(view, onMovieClick)
+        return MovieViewHolder(view, movieClick)
     }
 
     override fun getItemCount() = movieEntries.size
@@ -47,7 +42,7 @@ class MovieAdapter(
         holder.bindMovie(movieEntries[position]!!)
     }
 
-    class MovieViewHolder(view: View, private val onMovieClickListener: OnMovieClickListener) :
+    class MovieViewHolder(view: View, private val movieClick: (MovieEntry) -> Unit) :
             RecyclerView.ViewHolder(view) {
         private val movieImage = view.findViewById<ImageView>(R.id.movie_image_view)
 
@@ -56,7 +51,7 @@ class MovieAdapter(
                 Picasso.with(itemView.context)
                         .load("https://image.tmdb.org/t/p/w185/${movieEntry.posterPath}")
                         .into(movieImage)
-                itemView.setOnClickListener { onMovieClickListener.onMovieClick(this) }
+                itemView.setOnClickListener { movieClick(this) }
             }
         }
     }

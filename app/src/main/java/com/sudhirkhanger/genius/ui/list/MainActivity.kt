@@ -26,7 +26,6 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.sudhirkhanger.genius.AppApplication
 import com.sudhirkhanger.genius.R
-import com.sudhirkhanger.genius.data.database.MovieEntry
 import com.sudhirkhanger.genius.di.component.ApplicationComponent
 import com.sudhirkhanger.genius.di.component.DaggerMainActivityComponent
 import com.sudhirkhanger.genius.di.module.MainActivityContextModule
@@ -51,15 +50,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var movieRecyclerView: RecyclerView
     private lateinit var movieAdapter: MovieAdapter
 
-    private val movieClickListener = object : MovieAdapter.OnMovieClickListener {
-        override fun onMovieClick(movieEntry: MovieEntry) {
-            val detailActivityIntent = Intent(this@MainActivity,
-                    DetailActivity::class.java)
-            detailActivityIntent.putExtra(KEY_MOVIE, movieEntry)
-            startActivity(detailActivityIntent)
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -74,7 +64,13 @@ class MainActivity : AppCompatActivity() {
                 .build()
                 .injectMainActivity(this@MainActivity)
 
-        movieAdapter = MovieAdapter(movieClickListener)
+        movieAdapter = MovieAdapter {
+            val detailActivityIntent = Intent(this@MainActivity,
+                    DetailActivity::class.java)
+            detailActivityIntent.putExtra(KEY_MOVIE, it)
+            startActivity(detailActivityIntent)
+        }
+
         movieRecyclerView = findViewById<RecyclerView>(R.id.movie_recycler_view).apply {
             setHasFixedSize(true)
             layoutManager = GridLayoutManager(this@MainActivity, COL)
