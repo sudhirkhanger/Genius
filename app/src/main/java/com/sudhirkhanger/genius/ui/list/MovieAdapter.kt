@@ -16,6 +16,7 @@
 
 package com.sudhirkhanger.genius.ui.list
 
+import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -57,8 +58,28 @@ class MovieAdapter(private val movieClick: (MovieEntry) -> Unit) :
         }
     }
 
-    fun setMovieData(movieEntries: MutableList<MovieEntry?>) {
-        this.movieEntries = movieEntries
-        notifyDataSetChanged()
+    fun setMovieData(newMovieEntries: MutableList<MovieEntry?>) {
+        if (movieEntries.size == 0) {
+            movieEntries = newMovieEntries
+            notifyDataSetChanged()
+        } else {
+            val result: DiffUtil.DiffResult = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
+                override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+                        movieEntries[oldItemPosition]?.id == newMovieEntries[newItemPosition]?.id
+
+                override fun getOldListSize(): Int = movieEntries.size
+
+                override fun getNewListSize(): Int = newMovieEntries.size
+
+                override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                    val oldMovieEntry = movieEntries[oldItemPosition]
+                    val newMovieEntry = newMovieEntries[newItemPosition]
+                    return newMovieEntry?.id == oldMovieEntry?.id
+                            && newMovieEntry?.title.equals(oldMovieEntry?.title)
+                }
+            })
+            movieEntries = newMovieEntries
+            result.dispatchUpdatesTo(this)
+        }
     }
 }
