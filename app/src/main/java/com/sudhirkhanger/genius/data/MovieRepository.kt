@@ -51,6 +51,8 @@ class MovieRepository @Inject constructor(
             return
         }
 
+        movieNetworkDataSource.scheduleRecurringFetchMovieSync()
+
         executors.diskIO().execute { startFetchMovieService() }
     }
 
