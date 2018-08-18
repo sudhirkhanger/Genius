@@ -49,7 +49,7 @@ class RetrofitModule {
     @ApplicationScope
     fun getRetrofit(okHttpClient: OkHttpClient): Retrofit =
             Retrofit.Builder()
-                    .baseUrl("http://api.themoviedb.org/3/")
+                    .baseUrl("https://api.themoviedb.org/3/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(okHttpClient)
                     .build()
