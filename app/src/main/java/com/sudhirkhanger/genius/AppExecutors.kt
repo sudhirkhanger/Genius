@@ -18,6 +18,7 @@ package com.sudhirkhanger.genius
 
 import android.os.Handler
 import android.os.Looper
+import com.sudhirkhanger.genius.di.scopes.ApplicationScope
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 import javax.inject.Inject
@@ -31,6 +32,7 @@ import javax.inject.Inject
  * https://raw.githubusercontent.com/googlesamples/android-architecture-components/master/
  * GithubBrowserSample/app/src/main/java/com/android/example/github/AppExecutors.kt
  */
+@ApplicationScope
 open class AppExecutors(
         private val diskIO: Executor,
         private val networkIO: Executor,

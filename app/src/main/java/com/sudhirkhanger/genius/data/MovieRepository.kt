@@ -22,9 +22,11 @@ import com.sudhirkhanger.genius.data.database.MovieDao
 import com.sudhirkhanger.genius.data.database.MovieEntry
 import com.sudhirkhanger.genius.data.database.MoviesList
 import com.sudhirkhanger.genius.data.network.MovieNetworkDataSource
+import com.sudhirkhanger.genius.di.scopes.ApplicationScope
 import timber.log.Timber
 import javax.inject.Inject
 
+@ApplicationScope
 class MovieRepository @Inject constructor(
         private val movieDao: MovieDao,
         private val movieNetworkDataSource: MovieNetworkDataSource,
@@ -33,11 +35,10 @@ class MovieRepository @Inject constructor(
     private var isInitialized = false
 
     init {
-        Timber.e("repository init called")
         val movieData: LiveData<MoviesList> = movieNetworkDataSource.getMovieList()
         movieData.observeForever {
             executors.diskIO().execute {
-                Timber.e(it?.results?.get(0)?.title)
+                Timber.e("init called")
                 deleteExistingData()
                 movieDao.bulkInsert(*it?.results!!.toTypedArray())
             }
@@ -48,6 +49,7 @@ class MovieRepository @Inject constructor(
         Timber.e("initialize the data")
         if (isInitialized) {
             isInitialized = true
+            Timber.e("initialize true")
             return
         }
 
