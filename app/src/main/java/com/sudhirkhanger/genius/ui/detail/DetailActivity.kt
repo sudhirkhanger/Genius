@@ -45,7 +45,6 @@ class DetailActivity : AppCompatActivity() {
         val detailViewModel = ViewModelProviders.of(this, detailViewModelFactory).get(
                 DetailViewModel::class.java)
         detailViewModel.getMovie().observe(this, Observer {
-
             title.text = it?.title
             rating.text = it?.voteAverage.toString()
             releaseDate.text = it?.releaseDate
