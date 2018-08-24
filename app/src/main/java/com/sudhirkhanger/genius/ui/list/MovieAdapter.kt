@@ -26,7 +26,7 @@ import com.squareup.picasso.Picasso
 import com.sudhirkhanger.genius.R
 import com.sudhirkhanger.genius.data.database.MovieEntry
 
-class MovieAdapter(private val movieClick: (MovieEntry) -> Unit) :
+class MovieAdapter(private val movieClick: (Int?) -> Unit) :
         RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     private var movieEntries: MutableList<MovieEntry?> = mutableListOf()
@@ -43,7 +43,7 @@ class MovieAdapter(private val movieClick: (MovieEntry) -> Unit) :
         holder.bindMovie(movieEntries[position]!!)
     }
 
-    class MovieViewHolder(view: View, private val movieClick: (MovieEntry) -> Unit) :
+    class MovieViewHolder(view: View, private val movieClick: (Int?) -> Unit) :
             RecyclerView.ViewHolder(view) {
         private val movieImage = view.findViewById<ImageView>(R.id.movie_image_view)
 
@@ -53,7 +53,7 @@ class MovieAdapter(private val movieClick: (MovieEntry) -> Unit) :
                 Picasso.with(itemView.context)
                         .load("https://image.tmdb.org/t/p/w185/${movieEntry.posterPath}")
                         .into(movieImage)
-                itemView.setOnClickListener { movieClick(this) }
+                itemView.setOnClickListener { movieClick(this.id) }
             }
         }
     }

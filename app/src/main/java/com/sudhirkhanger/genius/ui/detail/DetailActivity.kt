@@ -24,7 +24,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
 import com.sudhirkhanger.genius.R
-import com.sudhirkhanger.genius.data.database.MovieEntry
 import com.sudhirkhanger.genius.ui.list.MainActivity
 
 class DetailActivity : AppCompatActivity() {
@@ -33,7 +32,7 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        val movie = intent.extras.getParcelable(MainActivity.KEY_MOVIE) as MovieEntry
+        val movieId = intent.extras.getInt(MainActivity.KEY_MOVIE)
 
         val title = findViewById<TextView>(R.id.title_text_view)
         val rating = findViewById<TextView>(R.id.ratings_text_view)
@@ -42,8 +41,7 @@ class DetailActivity : AppCompatActivity() {
         val posterImageView = findViewById<ImageView>(R.id.poster_image_view)
         val backdropImageView = findViewById<ImageView>(R.id.backdrop_image_view)
 
-
-        val detailViewModelFactory = DetailViewModelFactory(movie.id!!)
+        val detailViewModelFactory = DetailViewModelFactory(movieId)
         val detailViewModel = ViewModelProviders.of(this, detailViewModelFactory).get(
                 DetailViewModel::class.java)
         detailViewModel.getMovie().observe(this, Observer {
