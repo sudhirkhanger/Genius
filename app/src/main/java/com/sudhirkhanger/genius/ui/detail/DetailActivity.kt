@@ -16,6 +16,8 @@
 
 package com.sudhirkhanger.genius.ui.detail
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.ImageView
@@ -40,18 +42,25 @@ class DetailActivity : AppCompatActivity() {
         val posterImageView = findViewById<ImageView>(R.id.poster_image_view)
         val backdropImageView = findViewById<ImageView>(R.id.backdrop_image_view)
 
-        title.text = movie.title
-        rating.text = movie.voteAverage.toString()
-        releaseDate.text = movie.releaseDate
-        overview.text = movie.overview
 
-        // TODO replace picasso load with a utility function
-        Picasso.with(this)
-                .load("https://image.tmdb.org/t/p/w185/${movie.posterPath}")
-                .into(posterImageView)
+        val detailViewModelFactory = DetailViewModelFactory(movie.id!!)
+        val detailViewModel = ViewModelProviders.of(this, detailViewModelFactory).get(
+                DetailViewModel::class.java)
+        detailViewModel.getMovie().observe(this, Observer {
 
-        Picasso.with(this)
-                .load("https://image.tmdb.org/t/p/w300/${movie.backdropPath}")
-                .into(backdropImageView)
+            title.text = it?.title
+            rating.text = it?.voteAverage.toString()
+            releaseDate.text = it?.releaseDate
+            overview.text = it?.overview
+
+            // TODO replace picasso load with a utility function
+            Picasso.with(this@DetailActivity)
+                    .load("https://image.tmdb.org/t/p/w185/${it?.posterPath}")
+                    .into(posterImageView)
+
+            Picasso.with(this@DetailActivity)
+                    .load("https://image.tmdb.org/t/p/w300/${it?.backdropPath}")
+                    .into(backdropImageView)
+        })
     }
 }

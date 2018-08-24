@@ -18,6 +18,7 @@ package com.sudhirkhanger.genius.di.component
 
 import android.content.Context
 import com.sudhirkhanger.genius.AppApplication
+import com.sudhirkhanger.genius.data.MovieRepository
 import com.sudhirkhanger.genius.data.database.MovieDao
 import com.sudhirkhanger.genius.data.network.MovieNetworkDataSource
 import com.sudhirkhanger.genius.data.network.MovieService
@@ -40,6 +41,8 @@ interface ApplicationComponent {
     fun getNetworkDataSource(): MovieNetworkDataSource
 
     fun getMovieService(): MovieService
+
+    fun getMovieRepository() : MovieRepository
 
     @ApplicationContext
     fun getContext(): Context

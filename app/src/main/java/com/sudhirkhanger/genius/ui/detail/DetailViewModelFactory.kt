@@ -14,17 +14,22 @@
  * limitations under the License.
  */
 
-package com.sudhirkhanger.genius.ui.list
+package com.sudhirkhanger.genius.ui.detail
 
-import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
+import android.arch.lifecycle.ViewModelProvider
+import com.sudhirkhanger.genius.AppApplication
 import com.sudhirkhanger.genius.data.MovieRepository
-import com.sudhirkhanger.genius.data.database.MovieEntry
-import javax.inject.Inject
 
-class MainViewModel @Inject constructor(private val movieRepository: MovieRepository) : ViewModel() {
+class DetailViewModelFactory(private val id: Int) : ViewModelProvider.Factory {
 
-    private val movieList: LiveData<List<MovieEntry>> = movieRepository.getMovies()
+    private val movieRepository: MovieRepository =
+            AppApplication.instance.getApplicationComponent().getMovieRepository()
 
-    fun getMovies(): LiveData<List<MovieEntry>> = movieList
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
+            return DetailViewModel(movieRepository, id) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
 }

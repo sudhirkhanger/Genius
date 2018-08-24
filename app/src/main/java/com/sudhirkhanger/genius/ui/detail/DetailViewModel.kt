@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sudhirkhanger.genius.ui.list
+package com.sudhirkhanger.genius.ui.detail
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
@@ -22,9 +22,11 @@ import com.sudhirkhanger.genius.data.MovieRepository
 import com.sudhirkhanger.genius.data.database.MovieEntry
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(private val movieRepository: MovieRepository) : ViewModel() {
 
-    private val movieList: LiveData<List<MovieEntry>> = movieRepository.getMovies()
+class DetailViewModel @Inject constructor(private val movieRepository: MovieRepository, private val id: Int) :
+        ViewModel() {
 
-    fun getMovies(): LiveData<List<MovieEntry>> = movieList
+    private val movie: LiveData<MovieEntry> = movieRepository.getMovieById(id)
+
+    fun getMovie(): LiveData<MovieEntry> = movie
 }
