@@ -22,8 +22,8 @@ import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.squareup.picasso.Picasso
 import com.sudhirkhanger.genius.R
+import com.sudhirkhanger.genius.Utils
 import com.sudhirkhanger.genius.data.database.MovieEntry
 import kotlinx.android.synthetic.main.movie_list_item.view.*
 
@@ -47,12 +47,10 @@ class MovieAdapter(private val movieClick: (Int?) -> Unit) :
             RecyclerView.ViewHolder(binding.root) {
         private val movieImage = binding.root.movie_image_view
 
-        // TODO replace picasso load with a utility function
         fun bindMovie(movieEntry: MovieEntry) {
             with(movieEntry) {
-                Picasso.with(itemView.context)
-                        .load("https://image.tmdb.org/t/p/w185/${movieEntry.posterPath}")
-                        .into(movieImage)
+                Utils.loadImage(movieImage,
+                        "https://image.tmdb.org/t/p/w185/${movieEntry.posterPath}")
                 itemView.setOnClickListener { movieClick(this.id) }
             }
         }
