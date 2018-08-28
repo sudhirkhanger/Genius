@@ -17,84 +17,74 @@
 package com.sudhirkhanger.genius.data.database
 
 import android.arch.persistence.room.*
-import android.os.Parcelable
 import android.support.annotation.NonNull
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
-@Parcelize
-data class MoviesList(
+data class MoviesList(@field:SerializedName("page")
+                      val page: Int? = null,
 
-        @field:SerializedName("page")
-        val page: Int? = null,
+                      @field:SerializedName("total_pages")
+                      val totalPages: Int? = null,
 
-        @field:SerializedName("total_pages")
-        val totalPages: Int? = null,
+                      @field:SerializedName("results")
+                      val results: List<MovieEntry?>? = null,
 
-        @field:SerializedName("results")
-        val results: List<MovieEntry?>? = null,
+                      @field:SerializedName("total_results")
+                      val totalResults: Int? = null)
 
-        @field:SerializedName("total_results")
-        val totalResults: Int? = null
-) : Parcelable
-
-@Parcelize
 @Entity(tableName = "movie")
-data class MovieEntry(
+data class MovieEntry(@field:SerializedName("overview")
+                      var overview: String? = null,
 
-        @field:SerializedName("overview")
-        var overview: String? = null,
+                      @ColumnInfo(name = "original_language")
+                      @field:SerializedName("original_language")
+                      var originalLanguage: String? = null,
 
-        @ColumnInfo(name = "original_language")
-        @field:SerializedName("original_language")
-        var originalLanguage: String? = null,
+                      @ColumnInfo(name = "original_title")
+                      @field:SerializedName("original_title")
+                      var originalTitle: String? = null,
 
-        @ColumnInfo(name = "original_title")
-        @field:SerializedName("original_title")
-        var originalTitle: String? = null,
+                      @field:SerializedName("video")
+                      var video: Boolean? = null,
 
-        @field:SerializedName("video")
-        var video: Boolean? = null,
+                      @field:SerializedName("title")
+                      var title: String? = null,
 
-        @field:SerializedName("title")
-        var title: String? = null,
+                      @TypeConverters(ListConverter::class)
+                      @ColumnInfo(name = "genre_ids")
+                      @field:SerializedName("genre_ids")
+                      var genreIds: List<Int?>? = null,
 
-        @TypeConverters(ListConverter::class)
-        @ColumnInfo(name = "genre_ids")
-        @field:SerializedName("genre_ids")
-        var genreIds: List<Int?>? = null,
+                      @ColumnInfo(name = "poster_path")
+                      @field:SerializedName("poster_path")
+                      var posterPath: String? = null,
 
-        @ColumnInfo(name = "poster_path")
-        @field:SerializedName("poster_path")
-        var posterPath: String? = null,
+                      @ColumnInfo(name = "backdrop_path")
+                      @field:SerializedName("backdrop_path")
+                      var backdropPath: String? = null,
 
-        @ColumnInfo(name = "backdrop_path")
-        @field:SerializedName("backdrop_path")
-        var backdropPath: String? = null,
+                      @ColumnInfo(name = "release_date")
+                      @field:SerializedName("release_date")
+                      var releaseDate: String? = null,
 
-        @ColumnInfo(name = "release_date")
-        @field:SerializedName("release_date")
-        var releaseDate: String? = null,
+                      @ColumnInfo(name = "vote_average")
+                      @field:SerializedName("vote_average")
+                      var voteAverage: Double? = null,
 
-        @ColumnInfo(name = "vote_average")
-        @field:SerializedName("vote_average")
-        var voteAverage: Double? = null,
+                      @field:SerializedName("popularity")
+                      var popularity: Double? = null,
 
-        @field:SerializedName("popularity")
-        var popularity: Double? = null,
+                      @PrimaryKey
+                      @NonNull
+                      @field:SerializedName("id")
+                      var id: Int? = null,
 
-        @PrimaryKey
-        @NonNull
-        @field:SerializedName("id")
-        var id: Int? = null,
+                      @field:SerializedName("adult")
+                      var adult: Boolean? = null,
 
-        @field:SerializedName("adult")
-        var adult: Boolean? = null,
-
-        @ColumnInfo(name = "vote_count")
-        @field:SerializedName("vote_count")
-        var voteCount: Int? = null
-) : Parcelable {
+                      @ColumnInfo(name = "vote_count")
+                      @field:SerializedName("vote_count")
+                      var voteCount: Int? = null) {
     @Ignore
     constructor() : this(null, null, null, null, null,
             null, null, null, null, null,
