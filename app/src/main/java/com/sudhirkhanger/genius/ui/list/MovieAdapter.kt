@@ -16,15 +16,16 @@
 
 package com.sudhirkhanger.genius.ui.list
 
+import android.databinding.DataBindingUtil
+import android.databinding.ViewDataBinding
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import com.squareup.picasso.Picasso
 import com.sudhirkhanger.genius.R
 import com.sudhirkhanger.genius.data.database.MovieEntry
+import kotlinx.android.synthetic.main.movie_list_item.view.*
 
 class MovieAdapter(private val movieClick: (Int?) -> Unit) :
         RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
@@ -32,20 +33,19 @@ class MovieAdapter(private val movieClick: (Int?) -> Unit) :
     private var movieEntries: MutableList<MovieEntry?> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.movie_list_item, parent, false)
-        return MovieViewHolder(view, movieClick)
+        val itemBinding = DataBindingUtil.inflate<ViewDataBinding>(LayoutInflater.from(parent.context),
+                R.layout.movie_list_item, parent, false)
+        return MovieViewHolder(itemBinding, movieClick)
     }
 
     override fun getItemCount() = movieEntries.size
 
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.bindMovie(movieEntries[position]!!)
-    }
+    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) =
+            holder.bindMovie(movieEntries[position]!!)
 
-    class MovieViewHolder(view: View, private val movieClick: (Int?) -> Unit) :
-            RecyclerView.ViewHolder(view) {
-        private val movieImage = view.findViewById<ImageView>(R.id.movie_image_view)
+    class MovieViewHolder(binding: ViewDataBinding, private val movieClick: (Int?) -> Unit) :
+            RecyclerView.ViewHolder(binding.root) {
+        private val movieImage = binding.root.movie_image_view
 
         // TODO replace picasso load with a utility function
         fun bindMovie(movieEntry: MovieEntry) {
