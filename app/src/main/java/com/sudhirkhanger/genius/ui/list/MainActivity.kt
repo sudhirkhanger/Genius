@@ -20,12 +20,14 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.sudhirkhanger.genius.AppApplication
 import com.sudhirkhanger.genius.R
+import com.sudhirkhanger.genius.databinding.ActivityMainBinding
 import com.sudhirkhanger.genius.di.component.ApplicationComponent
 import com.sudhirkhanger.genius.di.component.DaggerMainActivityComponent
 import com.sudhirkhanger.genius.di.module.MainActivityContextModule
@@ -52,7 +54,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        val binding: ActivityMainBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         val applicationComponent: ApplicationComponent = AppApplication.instance.get(this@MainActivity)
                 .getApplicationComponent()
@@ -71,7 +75,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(detailActivityIntent)
         }
 
-        movieRecyclerView = findViewById<RecyclerView>(R.id.movie_recycler_view).apply {
+        movieRecyclerView = binding.movieRecyclerView.apply {
             setHasFixedSize(true)
             layoutManager = GridLayoutManager(this@MainActivity, COL)
             adapter = movieAdapter
