@@ -24,15 +24,15 @@ advanced Android concepts and try new APIs.
 
 ## Screenshots
 
-<img src="https://raw.githubusercontent.com/sudhirkhanger/Genius/master/Screenshot_1535448943.png"width="50%">
-<img src="https://raw.githubusercontent.com/sudhirkhanger/Genius/master/Screenshot_1535448948.png"width="50%">
+<img src="https://raw.githubusercontent.com/sudhirkhanger/Genius/master/Screenshot_1535448943.png" width="50%">
+<img src="https://raw.githubusercontent.com/sudhirkhanger/Genius/master/Screenshot_1535448948.png" width="50%">
 
 ## How to build
 
 Add the following line to your `~/.gradle/gradle.properties` with an
 API key from [the Movie DataBase (TMDb)](https://www.themoviedb.org/documentation/api) website.
 
-MyTheMovieDBApiKey="PLEASE-ADD-YOUR-MOVIE-DB-API-KEY"
+    MyTheMovieDBApiKey="PLEASE-ADD-YOUR-MOVIE-DB-API-KEY"
 
 ## Resources
 
