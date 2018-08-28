@@ -16,12 +16,10 @@
 
 package com.sudhirkhanger.genius.ui.detail
 
-import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.squareup.picasso.Picasso
 import com.sudhirkhanger.genius.R
 import com.sudhirkhanger.genius.databinding.ActivityDetailBinding
 import com.sudhirkhanger.genius.ui.list.MainActivity
@@ -30,28 +28,17 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityDetailBinding =
-                DataBindingUtil.setContentView(this, R.layout.activity_detail)
 
         val movieId = intent.extras.getInt(MainActivity.KEY_MOVIE)
 
         val detailViewModelFactory = DetailViewModelFactory(movieId)
         val detailViewModel = ViewModelProviders.of(this, detailViewModelFactory).get(
                 DetailViewModel::class.java)
-        detailViewModel.getMovie().observe(this, Observer {
-            binding.titleTextView.text = it?.title
-            binding.ratingsTextView.text = it?.voteAverage.toString()
-            binding.releaseDateTextView.text = it?.releaseDate
-            binding.overviewTextView.text = it?.overview
 
-            // TODO replace picasso load with a utility function
-            Picasso.with(this@DetailActivity)
-                    .load("https://image.tmdb.org/t/p/w185/${it?.posterPath}")
-                    .into(binding.posterImageView)
+        val binding: ActivityDetailBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_detail)
+        binding.setLifecycleOwner(this)
 
-            Picasso.with(this@DetailActivity)
-                    .load("https://image.tmdb.org/t/p/w300/${it?.backdropPath}")
-                    .into(binding.backdropImageView)
-        })
+        binding.viewModel = detailViewModel
     }
 }
