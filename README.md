@@ -5,7 +5,36 @@
 Genius is an app about movies and TV shows with a purpose to learn
 advanced Android concepts and try new APIs.
 
-### Links
+## TODO
+
+- [x] Kotlin
+- [x] Dagger 2
+- [x] Android Architecture Components
+- [x] MVVM Architecture
+- [x] Data Binding
+- [x] Retrofit
+- [x] Stetho
+- [x] Picasso
+- [x] Gson
+- [x] Firebase JobDispatcher
+- [ ] ConstraintLayout
+- [x] Timber
+- [ ] Testing
+- [x] Android Database Debug
+
+## Screenshots
+
+<img src="https://raw.githubusercontent.com/sudhirkhanger/Genius/master/Screenshot_1535448943.png"width="50%">
+<img src="https://raw.githubusercontent.com/sudhirkhanger/Genius/master/Screenshot_1535448948.png"width="50%">
+
+## How to build
+
+Add the following line to your `~/.gradle/gradle.properties` with an
+API key from [the Movie DataBase (TMDb)](https://www.themoviedb.org/documentation/api) website.
+
+MyTheMovieDBApiKey="PLEASE-ADD-YOUR-MOVIE-DB-API-KEY"
+
+## Resources
 
 * https://androidteachers.com/kotlin-for-android/retrofit-kotlin-android/
 * https://www.androidhive.info/2016/05/android-working-with-retrofit-http-library/
@@ -15,9 +44,6 @@ advanced Android concepts and try new APIs.
 * https://developer.android.com/guide/topics/ui/layout/recyclerview
 * https://proandroiddev.com/parcelable-in-kotlin-here-comes-parcelize-b998d5a5fcac
 * https://github.com/google/iosched
-
-#### Dagger
-
 * [Dagger](https://google.github.io/dagger/)
 * [Understanding Dagger 2](https://medium.com/@Miqubel/understanding-dagger-2-367ff1bd184f)
 * [The Future of Dependency Injection with Dagger 2](https://www.youtube.com/watch?v=plK0zyRLIP8)
