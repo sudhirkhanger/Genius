@@ -19,6 +19,7 @@ package com.sudhirkhanger.genius
 import android.app.Activity
 import android.app.Application
 import com.facebook.stetho.Stetho
+import com.squareup.leakcanary.LeakCanary
 import com.sudhirkhanger.genius.di.component.ApplicationComponent
 import com.sudhirkhanger.genius.di.component.DaggerApplicationComponent
 import com.sudhirkhanger.genius.di.module.ContextModule
@@ -42,6 +43,10 @@ class AppApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
+        if (LeakCanary.isInAnalyzerProcess(this)) return
+        LeakCanary.install(this)
+
         appComponent.injectApplication(this)
         instance = this
 

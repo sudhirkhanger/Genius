@@ -45,4 +45,5 @@ ext {
     junit_version = "4.12"
     espresso_core_version = "3.0.2"
     runner_version = "1.0.2"
+    leakcanary_version = "1.6.1"
 }

@@ -78,4 +78,9 @@ dependencies {
     debugImplementation "com.amitshekhar.android:debug-db:$rootProject.debug_db_version"
 
     implementation "com.firebase:firebase-jobdispatcher:$rootProject.firebase_jobdispatcher_version"
+
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$rootProject.leakcanary_version"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.leakcanary_version"
+    // Optional, if you use support library fragments:
+    debugImplementation "com.squareup.leakcanary:leakcanary-support-fragment:$rootProject.leakcanary_version"
 }
