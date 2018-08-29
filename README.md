@@ -17,10 +17,11 @@ advanced Android concepts and try new APIs.
 - [x] Picasso
 - [x] Gson
 - [x] Firebase JobDispatcher
-- [ ] ConstraintLayout
 - [x] Timber
-- [ ] Testing
 - [x] Android Database Debug
+- [x] LeakCanary
+- [ ] ConstraintLayout
+- [ ] Testing
 
 ## Screenshots
 
