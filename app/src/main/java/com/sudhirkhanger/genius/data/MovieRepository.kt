@@ -46,15 +46,11 @@ class MovieRepository @Inject constructor(
     }
 
     private fun initializeData() {
-        Timber.e("initialize the data")
-        if (isInitialized) {
-            isInitialized = true
-            Timber.e("initialize true")
-            return
-        }
+        if (isInitialized) return
+        Timber.e("isInitialized is false. Start fetching")
+        isInitialized = true
 
         movieNetworkDataSource.scheduleRecurringFetchMovieSync()
-
         executors.diskIO().execute { startFetchMovieService() }
     }
 
