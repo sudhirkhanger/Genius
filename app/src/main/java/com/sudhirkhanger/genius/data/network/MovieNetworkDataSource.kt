@@ -37,7 +37,6 @@ class MovieNetworkDataSource @Inject constructor(
     fun getMovieList(): LiveData<MoviesList> = movieListLiveData
 
     fun startFetchMovieService() {
-        Timber.e("calling intent service")
         val intent = Intent(context, MovieSyncIntentService::class.java)
         JobIntentService
                 .enqueueWork(context, MovieSyncIntentService::class.java, 1000, intent)
@@ -63,7 +62,6 @@ class MovieNetworkDataSource @Inject constructor(
     }
 
     fun fetchMovieList() {
-        Timber.e("Running network call")
         appExecutors.networkIO().execute {
             val call = movieService.getPopularMovies(1, BuildConfig.THE_MOVIE_DB_API_KEY)
             call.enqueue(object : Callback<MoviesList?> {

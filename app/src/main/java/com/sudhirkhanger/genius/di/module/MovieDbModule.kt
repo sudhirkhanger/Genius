@@ -29,16 +29,12 @@ class MovieDbModule(private val app: Application) {
 
     @Provides
     @ApplicationScope
-    fun getMovieDb(): MovieDb {
-        return Room
-                .databaseBuilder(app, MovieDb::class.java, "movie.db")
-                .fallbackToDestructiveMigration()
-                .build()
-    }
+    fun getMovieDb(): MovieDb = Room
+            .databaseBuilder(app, MovieDb::class.java, "movie.db")
+            .fallbackToDestructiveMigration()
+            .build()
 
     @Provides
     @ApplicationScope
-    fun getMovieDao(movieDb: MovieDb): MovieDao {
-        return movieDb.movieDao()
-    }
+    fun getMovieDao(movieDb: MovieDb): MovieDao = movieDb.movieDao()
 }

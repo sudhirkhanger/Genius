@@ -37,8 +37,9 @@ class RetrofitModule {
     @ApplicationContext
     fun getMovieNetworkDataSource(context: Context,
                                   executors: AppExecutors,
-                                  movieService: MovieService) =
+                                  movieService: MovieService): MovieNetworkDataSource =
             MovieNetworkDataSource(context, executors, movieService)
+
 
     @Provides
     @ApplicationScope

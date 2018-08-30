@@ -23,7 +23,6 @@ import com.sudhirkhanger.genius.data.database.MovieEntry
 import com.sudhirkhanger.genius.data.database.MoviesList
 import com.sudhirkhanger.genius.data.network.MovieNetworkDataSource
 import com.sudhirkhanger.genius.di.scopes.ApplicationScope
-import timber.log.Timber
 import javax.inject.Inject
 
 @ApplicationScope
@@ -38,7 +37,6 @@ class MovieRepository @Inject constructor(
         val movieData: LiveData<MoviesList> = movieNetworkDataSource.getMovieList()
         movieData.observeForever {
             executors.diskIO().execute {
-                Timber.e("init called")
                 deleteExistingData()
                 movieDao.bulkInsert(*it?.results!!.toTypedArray())
             }
@@ -47,7 +45,7 @@ class MovieRepository @Inject constructor(
 
     private fun initializeData() {
         if (isInitialized) return
-        Timber.e("isInitialized is false. Start fetching")
+
         isInitialized = true
 
         movieNetworkDataSource.scheduleRecurringFetchMovieSync()

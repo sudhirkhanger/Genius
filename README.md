@@ -14,6 +14,7 @@ advanced Android concepts and try new APIs.
 - [x] Data Binding
 - [x] Retrofit
 - [x] Stetho
+- [x] Android Debug Database
 - [x] Picasso
 - [x] Gson
 - [x] Firebase JobDispatcher
