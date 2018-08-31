@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         const val KEY_MOVIE = "movie_parcel"
-        private const val COL = 2
+        private const val COL = 3
     }
 
     @Inject
