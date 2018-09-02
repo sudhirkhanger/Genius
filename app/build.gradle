@@ -60,6 +60,7 @@ dependencies {
     implementation "com.jakewharton.timber:timber:$rootProject.timber_version"
 
     implementation "com.android.support:recyclerview-v7:$rootProject.support_version"
+    implementation "com.android.support:cardview-v7:$rootProject.support_version"
 
     implementation "com.google.dagger:dagger-android:$rootProject.dagger_version"
     implementation "com.google.dagger:dagger-android-support:$rootProject.dagger_version"
