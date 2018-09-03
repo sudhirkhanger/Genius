@@ -21,7 +21,7 @@ advanced Android concepts and try new APIs.
 - [x] Timber
 - [x] Android Database Debug
 - [x] LeakCanary
-- [ ] ConstraintLayout
+- [x] ConstraintLayout
 - [ ] Testing
 
 ## Screenshots
