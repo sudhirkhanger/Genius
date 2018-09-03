@@ -16,4 +16,5 @@
 
 <resources>
     <dimen name="image_view_width">200dp</dimen>
+    <dimen name="appbar_height">250dp</dimen>
 </resources>

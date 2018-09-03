@@ -22,7 +22,7 @@ import com.squareup.picasso.Picasso
 
 object BindingAdapters {
 
-    @BindingAdapter("app:imageUrl")
+    @BindingAdapter("imageUrl")
     @JvmStatic
     fun loadImage(view: ImageView, url: String) {
         Picasso.with(view.context).load(url).into(view)
