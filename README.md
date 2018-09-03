@@ -26,7 +26,7 @@ advanced Android concepts and try new APIs.
 
 ## Screenshots
 
-<img src="https://raw.githubusercontent.com/sudhirkhanger/Genius/master/Screenshot_1535448943.png" width="50%"><img src="https://raw.githubusercontent.com/sudhirkhanger/Genius/master/Screenshot_1535448948.png" width="50%">
+<img src="https://raw.githubusercontent.com/sudhirkhanger/Genius/master/device-2018-09-03-205255.png" width="50%"><img src="https://raw.githubusercontent.com/sudhirkhanger/Genius/master/device-2018-09-03-205444.png" width="50%">
 
 ## How to build
 
