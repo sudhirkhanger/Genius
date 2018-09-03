@@ -5,6 +5,10 @@
 Genius is an app about movies and TV shows with a purpose to learn
 advanced Android concepts and try new APIs.
 
+## APK
+
+Debug apk - https://github.com/sudhirkhanger/Genius/blob/master/app-debug.apk?raw=true
+
 ## TODO
 
 - [x] Kotlin
