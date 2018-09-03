@@ -14,73 +14,27 @@
   ~ limitations under the License.
   -->
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.detail.DetailActivity">
 
-    <data>
-
-        <variable
-            name="viewModel"
-            type="com.sudhirkhanger.genius.ui.detail.DetailViewModel" />
-    </data>
-
-    <ScrollView
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        tools:context=".ui.detail.DetailActivity">
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <LinearLayout
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-            <ImageView
-                android:id="@+id/backdrop_image_view"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/image_view_width"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                app:imageUrl="@{`https://image.tmdb.org/t/p/w300` + viewModel.movie.backdropPath}"
-                tools:src="@drawable/ic_launcher_background" />
+    </android.support.design.widget.AppBarLayout>
 
-            <ImageView
-                android:id="@+id/poster_image_view"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/image_view_width"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                app:imageUrl="@{`https://image.tmdb.org/t/p/w185` + viewModel.movie.posterPath}"
-                tools:src="@drawable/ic_launcher_foreground" />
+    <include layout="@layout/content_detail" />
 
-            <TextView
-                android:id="@+id/title_text_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{viewModel.movie.title}"
-                tools:text="Title" />
-
-            <TextView
-                android:id="@+id/overview_text_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{viewModel.movie.overview}"
-                tools:text="Overview" />
-
-            <TextView
-                android:id="@+id/ratings_text_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{Double.toString(safeUnbox(viewModel.movie.voteAverage))}"
-                tools:text="6/10" />
-
-            <TextView
-                android:id="@+id/release_date_text_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{viewModel.movie.releaseDate}"
-                tools:text="6/4/18" />
-        </LinearLayout>
-    </ScrollView>
-</layout>
+</android.support.design.widget.CoordinatorLayout>

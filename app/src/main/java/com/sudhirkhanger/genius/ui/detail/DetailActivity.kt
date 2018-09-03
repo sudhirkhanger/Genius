@@ -16,29 +16,17 @@
 
 package com.sudhirkhanger.genius.ui.detail
 
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.sudhirkhanger.genius.R
-import com.sudhirkhanger.genius.databinding.ActivityDetailBinding
-import com.sudhirkhanger.genius.ui.list.MainActivityFragment
+import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val movieId = intent.extras.getInt(MainActivityFragment.KEY_MOVIE)
-
-        val detailViewModelFactory = DetailViewModelFactory(movieId)
-        val detailViewModel = ViewModelProviders.of(this, detailViewModelFactory).get(
-                DetailViewModel::class.java)
-
-        val binding: ActivityDetailBinding =
-                DataBindingUtil.setContentView(this, R.layout.activity_detail)
-        binding.setLifecycleOwner(this)
-
-        binding.viewModel = detailViewModel
+        setContentView(R.layout.activity_detail)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 }
