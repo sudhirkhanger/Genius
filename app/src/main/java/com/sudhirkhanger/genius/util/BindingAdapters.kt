@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.sudhirkhanger.genius
+package com.sudhirkhanger.genius.util
 
 import android.databinding.BindingAdapter
 import android.widget.ImageView
 import com.squareup.picasso.Picasso
 
-object Utils {
+object BindingAdapters {
 
     @BindingAdapter("app:imageUrl")
     @JvmStatic
