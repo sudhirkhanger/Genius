@@ -59,7 +59,13 @@ API key from [the Movie DataBase (TMDb)](https://www.themoviedb.org/documentatio
 * [Dagger 2 for Android Beginners](https://medium.com/@harivigneshjayapalan/dagger-2-for-android-beginners-introduction-be6580cb3edb)
 * [ViewModel with Dagger2 (Android Architecture Components)](https://proandroiddev.com/viewmodel-with-dagger2-architecture-components-2e06f06c9455)
 
----
+## Author
+
+### Sudhir Khanger
+
+Android developer, Royal Enfield rider, and a blogger.
+
+<a href="https://sudhirkhanger.com/"><img src="https://github.com/sudhirkhanger/social-icons/blob/master/WordPress-logotype-simplified.png?raw=true" width="40"></a>   <a href="https://github.com/sudhirkhanger"><img src="https://github.com/sudhirkhanger/social-icons/blob/master/GitHub-Mark-120px-plus.png?raw=true" width="40"></a>    <a href="https://twitter.com/sudhirkhanger"><img src="https://github.com/sudhirkhanger/social-icons/blob/master/Twitter_Social_Icon_Circle_Color.png?raw=true" width="40"></a>    <a href="https://www.linkedin.com/in/sudhirkhanger/"><img src="https://github.com/sudhirkhanger/social-icons/blob/master/In-2C-128px-TM.png?raw=true" width="40"></a>
 
     Copyright 2018 Sudhir Khanger
 
