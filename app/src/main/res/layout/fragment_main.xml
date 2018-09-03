@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
   ~ Copyright 2018 Sudhir Khanger
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,22 +16,20 @@
   -->
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data />
 
-    <android.support.v7.widget.CardView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:cardElevation="4dp">
+        android:layout_height="match_parent"
+        tools:context=".ui.list.MainActivity">
 
-        <ImageView
-            android:id="@+id/movie_image_view"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/movie_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/image_view_width"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop" />
+            android:layout_height="match_parent"
+            android:layout_margin="16dp" />
 
-    </android.support.v7.widget.CardView>
+    </RelativeLayout>
 </layout>

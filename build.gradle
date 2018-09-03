@@ -35,6 +35,7 @@ ext {
     debug_db_version = "1.0.4"
     firebase_jobdispatcher_version = "0.8.5"
     support_version = "28.0.0-rc02"
+    design_support_version = "28.0.0-rc01"
     constraint_layout_version = "1.1.2"
     gson_version = "2.8.5"
     picasso_version = "2.5.2"

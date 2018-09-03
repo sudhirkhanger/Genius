@@ -21,6 +21,8 @@ import com.sudhirkhanger.genius.di.module.MainActivityContextModule
 import com.sudhirkhanger.genius.di.qualifier.ActivityContext
 import com.sudhirkhanger.genius.di.scopes.ActivityScope
 import com.sudhirkhanger.genius.ui.list.MainActivity
+import com.sudhirkhanger.genius.ui.list.MainViewModel
+import com.sudhirkhanger.genius.ui.list.MainViewModelFactory
 import dagger.Component
 
 @ActivityScope
@@ -30,6 +32,9 @@ interface MainActivityComponent {
 
     @ActivityContext
     fun getContext(): Context
+
+    @ActivityScope
+    fun getMainViewModel(): MainViewModelFactory
 
     fun injectMainActivity(mainActivity: MainActivity)
 }

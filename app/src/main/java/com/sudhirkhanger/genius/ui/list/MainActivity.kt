@@ -16,75 +16,16 @@
 
 package com.sudhirkhanger.genius.ui.list
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
-import android.content.Intent
-import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
-import com.sudhirkhanger.genius.AppApplication
 import com.sudhirkhanger.genius.R
-import com.sudhirkhanger.genius.databinding.ActivityMainBinding
-import com.sudhirkhanger.genius.di.component.ApplicationComponent
-import com.sudhirkhanger.genius.di.component.DaggerMainActivityComponent
-import com.sudhirkhanger.genius.di.module.MainActivityContextModule
-import com.sudhirkhanger.genius.di.qualifier.ActivityContext
-import com.sudhirkhanger.genius.ui.detail.DetailActivity
-import javax.inject.Inject
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    companion object {
-        const val KEY_MOVIE = "movie_parcel"
-        private const val COL = 3
-    }
-
-    @Inject
-    @field:ActivityContext
-    lateinit var activityContext: Context
-
-    @Inject
-    lateinit var mainViewModelFactory: MainViewModelFactory
-
-    private lateinit var movieRecyclerView: RecyclerView
-    private lateinit var movieAdapter: MovieAdapter
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val binding: ActivityMainBinding =
-                DataBindingUtil.setContentView(this, R.layout.activity_main)
-
-        val applicationComponent: ApplicationComponent = AppApplication.instance.get(this@MainActivity)
-                .getApplicationComponent()
-
-        DaggerMainActivityComponent
-                .builder()
-                .mainActivityContextModule(MainActivityContextModule(this@MainActivity))
-                .applicationComponent(applicationComponent)
-                .build()
-                .injectMainActivity(this@MainActivity)
-
-        movieAdapter = MovieAdapter {
-            val detailActivityIntent = Intent(this@MainActivity,
-                    DetailActivity::class.java)
-            detailActivityIntent.putExtra(KEY_MOVIE, it)
-            startActivity(detailActivityIntent)
-        }
-
-        movieRecyclerView = binding.movieRecyclerView.apply {
-            setHasFixedSize(true)
-            layoutManager = GridLayoutManager(this@MainActivity, COL)
-            adapter = movieAdapter
-        }
-
-        val mainViewModel = ViewModelProviders.of(this, mainViewModelFactory)
-                .get(MainViewModel::class.java)
-        mainViewModel.getMovies().observe(this, Observer {
-            movieAdapter.setMovieData(it!!.toMutableList())
-        })
+        setContentView(R.layout.activity_main)
+        setSupportActionBar(toolbar)
     }
 }

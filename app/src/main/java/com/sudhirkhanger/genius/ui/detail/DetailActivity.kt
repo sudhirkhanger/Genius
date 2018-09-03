@@ -22,14 +22,14 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.sudhirkhanger.genius.R
 import com.sudhirkhanger.genius.databinding.ActivityDetailBinding
-import com.sudhirkhanger.genius.ui.list.MainActivity
+import com.sudhirkhanger.genius.ui.list.MainActivityFragment
 
 class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val movieId = intent.extras.getInt(MainActivity.KEY_MOVIE)
+        val movieId = intent.extras.getInt(MainActivityFragment.KEY_MOVIE)
 
         val detailViewModelFactory = DetailViewModelFactory(movieId)
         val detailViewModel = ViewModelProviders.of(this, detailViewModelFactory).get(

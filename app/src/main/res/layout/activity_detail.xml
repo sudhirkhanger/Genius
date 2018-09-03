@@ -38,7 +38,7 @@
 
             <ImageView
                 android:id="@+id/backdrop_image_view"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/image_view_width"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
