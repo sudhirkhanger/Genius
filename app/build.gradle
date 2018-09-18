@@ -46,8 +46,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "com.android.support:appcompat-v7:$rootProject.support_version"
-    implementation "com.android.support.constraint:constraint-layout:$rootProject.constraint_layout_version"
+    implementation "com.android.support:appcompat-v7:$rootProject.supportLibVersion"
+    implementation "com.android.support.constraint:constraint-layout:$rootProject.constraintLayoutVersion"
     implementation 'com.android.support:support-v4:28.0.0-rc02'
     testImplementation "junit:junit:$rootProject.junit_version"
     androidTestImplementation "com.android.support.test:runner:$rootProject.runner_version"
@@ -58,22 +58,22 @@ dependencies {
     implementation "com.google.code.gson:gson:$rootProject.gson_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.logging_intercep_version"
     implementation "com.squareup.picasso:picasso:$rootProject.picasso_version"
-    implementation "com.jakewharton.timber:timber:$rootProject.timber_version"
+    implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
 
-    implementation "com.android.support:recyclerview-v7:$rootProject.support_version"
-    implementation "com.android.support:cardview-v7:$rootProject.support_version"
-    implementation "com.android.support:design:$rootProject.design_support_version"
+    implementation "com.android.support:recyclerview-v7:$rootProject.supportLibVersion"
+    implementation "com.android.support:cardview-v7:$rootProject.supportLibVersion"
+    implementation "com.android.support:design:$rootProject.supportLibVersion"
 
     implementation "com.google.dagger:dagger-android:$rootProject.dagger_version"
     implementation "com.google.dagger:dagger-android-support:$rootProject.dagger_version"
     kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger_version"
     kapt "com.google.dagger:dagger-compiler:$rootProject.dagger_version"
 
-    implementation "android.arch.lifecycle:extensions:$rootProject.lifecycle_version"
-    kapt "android.arch.lifecycle:compiler:$rootProject.lifecycle_version"
+    implementation "android.arch.lifecycle:extensions:$rootProject.archVersion"
+    kapt "android.arch.lifecycle:compiler:$rootProject.archVersion"
 
-    implementation "android.arch.persistence.room:runtime:$rootProject.room_version"
-    kapt "android.arch.persistence.room:compiler:$rootProject.room_version"
+    implementation "android.arch.persistence.room:runtime:$rootProject.archVersion"
+    kapt "android.arch.persistence.room:compiler:$rootProject.archVersion"
 
     implementation "com.google.code.gson:gson:$rootProject.gson_version"
 
