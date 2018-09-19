@@ -34,7 +34,7 @@ interface MainActivityComponent {
     fun getContext(): Context
 
     @ActivityScope
-    fun getMainViewModel(): MainViewModelFactory
+    fun getMainViewModelFactory(): MainViewModelFactory
 
     fun injectMainActivity(mainActivity: MainActivity)
 }

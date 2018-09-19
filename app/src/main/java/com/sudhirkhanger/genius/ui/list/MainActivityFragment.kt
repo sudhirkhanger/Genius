@@ -88,6 +88,6 @@ class MainActivityFragment : Fragment() {
                 .build()
         daggerMainActivityComponent.injectMainActivity(activity as MainActivity)
 
-        mainViewModelFactory = daggerMainActivityComponent.getMainViewModel()
+        mainViewModelFactory = daggerMainActivityComponent.getMainViewModelFactory()
     }
 }
