@@ -19,5 +19,5 @@ package com.sudhirkhanger.genius.di.scopes
 import javax.inject.Scope
 
 @Scope
-@kotlin.annotation.Retention(AnnotationRetention.BINARY)
+@Retention(AnnotationRetention.RUNTIME)
 annotation class ActivityScope
