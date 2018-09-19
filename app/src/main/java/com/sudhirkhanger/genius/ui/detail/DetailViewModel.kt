@@ -22,11 +22,7 @@ import com.sudhirkhanger.genius.data.MovieRepository
 import com.sudhirkhanger.genius.data.database.MovieEntry
 import javax.inject.Inject
 
+class DetailViewModel @Inject constructor(movieRepository: MovieRepository, id: Int) : ViewModel() {
 
-class DetailViewModel @Inject constructor(private val movieRepository: MovieRepository, private val id: Int) :
-        ViewModel() {
-
-    private val movie: LiveData<MovieEntry> = movieRepository.getMovieById(id)
-
-    fun getMovie(): LiveData<MovieEntry> = movie
+    val movie: LiveData<MovieEntry> = movieRepository.getMovieById(id)
 }

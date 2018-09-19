@@ -68,7 +68,8 @@ class MainActivityFragment : Fragment() {
             ViewModelProviders.of(this, mainViewModelFactory)
                     .get(MainViewModel::class.java)
         }
-        mainViewModel.getMovies().observe(this, Observer {
+
+        mainViewModel.movieList.observe(this, Observer {
             movieAdapter.setMovieData(it!!.toMutableList())
         })
 

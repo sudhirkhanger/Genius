@@ -61,7 +61,7 @@ class DetailFragment : Fragment() {
         val backdropImageView = activity?.findViewById(R.id.backdrop_image_view) as ImageView
         val titleTextView = activity?.findViewById(R.id.title_text_view) as TextView
 
-        detailViewModel.getMovie().observe(this, Observer {
+        detailViewModel.movie.observe(this, Observer {
             backdropImageView.viewTreeObserver.addOnGlobalLayoutListener(
                     object : ViewTreeObserver.OnGlobalLayoutListener {
                         override fun onGlobalLayout() {

@@ -16,15 +16,11 @@
 
 package com.sudhirkhanger.genius.ui.list
 
-import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
 import com.sudhirkhanger.genius.data.MovieRepository
-import com.sudhirkhanger.genius.data.database.MovieEntry
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(private val movieRepository: MovieRepository) : ViewModel() {
+class MainViewModel @Inject constructor(movieRepository: MovieRepository) : ViewModel() {
 
-    private val movieList: LiveData<List<MovieEntry>> = movieRepository.getMovies()
-
-    fun getMovies(): LiveData<List<MovieEntry>> = movieList
+    val movieList = movieRepository.getMovies()
 }
