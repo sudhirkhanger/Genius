@@ -23,7 +23,6 @@ import com.squareup.leakcanary.LeakCanary
 import com.sudhirkhanger.genius.di.component.ApplicationComponent
 import com.sudhirkhanger.genius.di.component.DaggerApplicationComponent
 import com.sudhirkhanger.genius.di.module.ContextModule
-import com.sudhirkhanger.genius.di.module.MovieDbModule
 import timber.log.Timber
 
 class AppApplication : Application() {
@@ -37,7 +36,6 @@ class AppApplication : Application() {
         DaggerApplicationComponent
                 .builder()
                 .contextModule(ContextModule(this))
-                .movieDbModule(MovieDbModule(this))
                 .build()
     }
 

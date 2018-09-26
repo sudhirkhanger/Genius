@@ -16,21 +16,22 @@
 
 package com.sudhirkhanger.genius.di.module
 
-import android.app.Application
 import android.arch.persistence.room.Room
+import android.content.Context
 import com.sudhirkhanger.genius.data.database.MovieDao
 import com.sudhirkhanger.genius.data.database.MovieDb
+import com.sudhirkhanger.genius.di.qualifier.ApplicationContext
 import com.sudhirkhanger.genius.di.scopes.ApplicationScope
 import dagger.Module
 import dagger.Provides
 
 @Module
-class MovieDbModule(private val app: Application) {
+class MovieDbModule {
 
     @Provides
     @ApplicationScope
-    fun getMovieDb(): MovieDb = Room
-            .databaseBuilder(app, MovieDb::class.java, "movie.db")
+    fun getMovieDb(@ApplicationContext context: Context): MovieDb = Room
+            .databaseBuilder(context, MovieDb::class.java, "movie.db")
             .fallbackToDestructiveMigration()
             .build()
 
