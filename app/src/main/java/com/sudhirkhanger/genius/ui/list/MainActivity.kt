@@ -16,16 +16,19 @@
 
 package com.sudhirkhanger.genius.ui.list
 
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.sudhirkhanger.genius.R
+import com.sudhirkhanger.genius.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        DataBindingUtil.setContentView(this, R.layout.activity_main)
+                as ActivityMainBinding
         setSupportActionBar(toolbar)
     }
 }

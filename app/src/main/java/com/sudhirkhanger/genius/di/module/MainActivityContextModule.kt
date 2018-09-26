@@ -28,10 +28,6 @@ class MainActivityContextModule(private var mainActivity: MainActivity) {
 
     @Provides
     @ActivityScope
-    fun providesMainActivity(): MainActivity = mainActivity
-
-    @Provides
-    @ActivityScope
     @ActivityContext
     fun provideContext(): Context = mainActivity
 }

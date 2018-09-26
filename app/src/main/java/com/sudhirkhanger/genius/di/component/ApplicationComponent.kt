@@ -30,10 +30,7 @@ import com.sudhirkhanger.genius.di.scopes.ApplicationScope
 import dagger.Component
 
 @ApplicationScope
-@Component(modules = [
-    ContextModule::class,
-    RetrofitModule::class,
-    MovieDbModule::class])
+@Component(modules = [ContextModule::class, RetrofitModule::class, MovieDbModule::class])
 interface ApplicationComponent {
 
     fun getMovieDao(): MovieDao
@@ -42,7 +39,7 @@ interface ApplicationComponent {
 
     fun getMovieService(): MovieService
 
-    fun getMovieRepository() : MovieRepository
+    fun getMovieRepository(): MovieRepository
 
     @ApplicationContext
     fun getContext(): Context

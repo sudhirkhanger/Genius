@@ -30,9 +30,4 @@ class ContextModule(private var context: Context) {
     @ApplicationScope
     @ApplicationContext
     fun provideContext(): Context = context
-
-    @Provides
-    @ApplicationScope
-    @ApplicationContext
-    fun provideAppExecutor(): AppExecutors = AppExecutors()
 }

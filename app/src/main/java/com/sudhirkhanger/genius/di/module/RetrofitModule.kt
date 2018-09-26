@@ -16,11 +16,7 @@
 
 package com.sudhirkhanger.genius.di.module
 
-import android.content.Context
-import com.sudhirkhanger.genius.AppExecutors
-import com.sudhirkhanger.genius.data.network.MovieNetworkDataSource
 import com.sudhirkhanger.genius.data.network.MovieService
-import com.sudhirkhanger.genius.di.qualifier.ApplicationContext
 import com.sudhirkhanger.genius.di.scopes.ApplicationScope
 import dagger.Module
 import dagger.Provides
@@ -31,15 +27,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
 class RetrofitModule {
-
-    @Provides
-    @ApplicationScope
-    @ApplicationContext
-    fun getMovieNetworkDataSource(context: Context,
-                                  executors: AppExecutors,
-                                  movieService: MovieService): MovieNetworkDataSource =
-            MovieNetworkDataSource(context, executors, movieService)
-
 
     @Provides
     @ApplicationScope

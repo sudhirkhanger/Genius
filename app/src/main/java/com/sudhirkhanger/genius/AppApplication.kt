@@ -43,20 +43,30 @@ class AppApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
-        if (LeakCanary.isInAnalyzerProcess(this)) return
-        LeakCanary.install(this)
+        initLeakCanary()
 
         appComponent.injectApplication(this)
         instance = this
 
-        Stetho.initializeWithDefaults(this)
-
-        if (BuildConfig.DEBUG)
-            Timber.plant(Timber.DebugTree())
+        initStetho()
+        initTimber()
     }
 
     fun getApplicationComponent(): ApplicationComponent = appComponent
 
     fun get(activity: Activity): AppApplication = activity.application as AppApplication
+
+    private fun initTimber() {
+        if (BuildConfig.DEBUG)
+            Timber.plant(Timber.DebugTree())
+    }
+
+    private fun initStetho() {
+        Stetho.initializeWithDefaults(this)
+    }
+
+    private fun initLeakCanary() {
+        if (LeakCanary.isInAnalyzerProcess(this)) return
+        LeakCanary.install(this)
+    }
 }
