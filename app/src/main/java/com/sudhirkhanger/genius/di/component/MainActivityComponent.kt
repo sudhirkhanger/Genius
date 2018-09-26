@@ -16,21 +16,14 @@
 
 package com.sudhirkhanger.genius.di.component
 
-import android.content.Context
-import com.sudhirkhanger.genius.di.module.MainActivityContextModule
-import com.sudhirkhanger.genius.di.qualifier.ActivityContext
 import com.sudhirkhanger.genius.di.scopes.ActivityScope
 import com.sudhirkhanger.genius.ui.list.MainActivity
 import com.sudhirkhanger.genius.ui.list.MainViewModelFactory
 import dagger.Component
 
 @ActivityScope
-@Component(modules = [MainActivityContextModule::class],
-        dependencies = [ApplicationComponent::class])
+@Component(dependencies = [ApplicationComponent::class])
 interface MainActivityComponent {
-
-    @ActivityContext
-    fun getContext(): Context
 
     @ActivityScope
     fun getMainViewModelFactory(): MainViewModelFactory

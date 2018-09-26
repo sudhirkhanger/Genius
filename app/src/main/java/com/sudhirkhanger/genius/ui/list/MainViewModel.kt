@@ -18,8 +18,10 @@ package com.sudhirkhanger.genius.ui.list
 
 import android.arch.lifecycle.ViewModel
 import com.sudhirkhanger.genius.data.MovieRepository
+import com.sudhirkhanger.genius.di.scopes.ActivityScope
 import javax.inject.Inject
 
+@ActivityScope
 class MainViewModel @Inject constructor(movieRepository: MovieRepository) : ViewModel() {
 
     val movieList = movieRepository.getMovies()

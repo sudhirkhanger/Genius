@@ -31,7 +31,6 @@ import com.sudhirkhanger.genius.AppApplication
 import com.sudhirkhanger.genius.R
 import com.sudhirkhanger.genius.di.component.ApplicationComponent
 import com.sudhirkhanger.genius.di.component.DaggerMainActivityComponent
-import com.sudhirkhanger.genius.di.module.MainActivityContextModule
 import com.sudhirkhanger.genius.ui.detail.DetailActivity
 import javax.inject.Inject
 
@@ -83,7 +82,6 @@ class MainActivityFragment : Fragment() {
                 AppApplication.instance.get(activity as MainActivity).getApplicationComponent()
 
         val daggerMainActivityComponent = DaggerMainActivityComponent.builder()
-                .mainActivityContextModule(MainActivityContextModule(activity as MainActivity))
                 .applicationComponent(applicationComponent)
                 .build()
         daggerMainActivityComponent.injectMainActivity(activity as MainActivity)

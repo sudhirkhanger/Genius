@@ -20,8 +20,10 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
 import com.sudhirkhanger.genius.data.MovieRepository
 import com.sudhirkhanger.genius.data.database.MovieEntry
+import com.sudhirkhanger.genius.di.scopes.ActivityScope
 import javax.inject.Inject
 
+@ActivityScope
 class DetailViewModel @Inject constructor(movieRepository: MovieRepository, id: Int) : ViewModel() {
 
     val movie: LiveData<MovieEntry> = movieRepository.getMovieById(id)

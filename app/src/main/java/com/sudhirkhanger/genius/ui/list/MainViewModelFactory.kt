@@ -19,8 +19,10 @@ package com.sudhirkhanger.genius.ui.list
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.sudhirkhanger.genius.data.MovieRepository
+import com.sudhirkhanger.genius.di.scopes.ActivityScope
 import javax.inject.Inject
 
+@ActivityScope
 class MainViewModelFactory @Inject constructor(private val movieRepository: MovieRepository) :
         ViewModelProvider.NewInstanceFactory() {
 
