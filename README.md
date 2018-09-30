@@ -26,7 +26,6 @@ Debug apk - https://github.com/sudhirkhanger/Genius/blob/master/app-debug.apk?ra
 - [x] Android Database Debug
 - [x] LeakCanary
 - [x] ConstraintLayout
-- [ ] Testing
 
 ## Screenshots
 

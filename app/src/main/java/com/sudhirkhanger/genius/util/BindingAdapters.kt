@@ -25,6 +25,6 @@ object BindingAdapters {
     @BindingAdapter("imageUrl")
     @JvmStatic
     fun loadImage(view: ImageView, url: String) {
-        Picasso.with(view.context).load(url).into(view)
+        Picasso.get().load(url).into(view)
     }
 }

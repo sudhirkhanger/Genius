@@ -16,16 +16,12 @@
 
 package com.sudhirkhanger.genius.di.component
 
-import android.content.Context
 import com.sudhirkhanger.genius.AppApplication
 import com.sudhirkhanger.genius.data.MovieRepository
-import com.sudhirkhanger.genius.data.database.MovieDao
 import com.sudhirkhanger.genius.data.network.MovieNetworkDataSource
-import com.sudhirkhanger.genius.data.network.MovieService
 import com.sudhirkhanger.genius.di.module.ContextModule
 import com.sudhirkhanger.genius.di.module.MovieDbModule
 import com.sudhirkhanger.genius.di.module.RetrofitModule
-import com.sudhirkhanger.genius.di.qualifier.ApplicationContext
 import com.sudhirkhanger.genius.di.scopes.ApplicationScope
 import dagger.Component
 
@@ -33,16 +29,9 @@ import dagger.Component
 @Component(modules = [ContextModule::class, RetrofitModule::class, MovieDbModule::class])
 interface ApplicationComponent {
 
-    fun getMovieDao(): MovieDao
-
     fun getNetworkDataSource(): MovieNetworkDataSource
 
-    fun getMovieService(): MovieService
-
     fun getMovieRepository(): MovieRepository
-
-    @ApplicationContext
-    fun getContext(): Context
 
     fun injectApplication(appApplication: AppApplication)
 }
