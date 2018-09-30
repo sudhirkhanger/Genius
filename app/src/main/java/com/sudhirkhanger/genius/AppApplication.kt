@@ -16,7 +16,6 @@
 
 package com.sudhirkhanger.genius
 
-import android.app.Activity
 import android.app.Application
 import com.facebook.stetho.Stetho
 import com.squareup.leakcanary.LeakCanary
@@ -43,7 +42,7 @@ class AppApplication : Application() {
         super.onCreate()
         initLeakCanary()
 
-        appComponent.injectApplication(this)
+        appComponent.inject(this)
         instance = this
 
         initStetho()
@@ -51,8 +50,6 @@ class AppApplication : Application() {
     }
 
     fun getApplicationComponent(): ApplicationComponent = appComponent
-
-    fun get(activity: Activity): AppApplication = activity.application as AppApplication
 
     private fun initTimber() {
         if (BuildConfig.DEBUG)

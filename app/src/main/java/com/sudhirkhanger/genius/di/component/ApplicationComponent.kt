@@ -18,7 +18,9 @@ package com.sudhirkhanger.genius.di.component
 
 import com.sudhirkhanger.genius.AppApplication
 import com.sudhirkhanger.genius.data.MovieRepository
+import com.sudhirkhanger.genius.data.network.MovieJobService
 import com.sudhirkhanger.genius.data.network.MovieNetworkDataSource
+import com.sudhirkhanger.genius.data.network.MovieSyncIntentService
 import com.sudhirkhanger.genius.di.module.ContextModule
 import com.sudhirkhanger.genius.di.module.MovieDbModule
 import com.sudhirkhanger.genius.di.module.RetrofitModule
@@ -29,9 +31,9 @@ import dagger.Component
 @Component(modules = [ContextModule::class, RetrofitModule::class, MovieDbModule::class])
 interface ApplicationComponent {
 
-    fun getNetworkDataSource(): MovieNetworkDataSource
-
     fun getMovieRepository(): MovieRepository
 
-    fun injectApplication(appApplication: AppApplication)
+    fun inject(appApplication: AppApplication)
+    fun inject(movieSyncIntentService: MovieSyncIntentService)
+    fun inject(movieJobService: MovieJobService)
 }

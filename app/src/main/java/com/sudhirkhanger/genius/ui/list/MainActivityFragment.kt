@@ -27,10 +27,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.sudhirkhanger.genius.AppApplication
 import com.sudhirkhanger.genius.R
-import com.sudhirkhanger.genius.di.component.ApplicationComponent
 import com.sudhirkhanger.genius.di.component.DaggerMainActivityComponent
+import com.sudhirkhanger.genius.di.component.Injector
+import com.sudhirkhanger.genius.di.scopes.ActivityScope
 import com.sudhirkhanger.genius.ui.detail.DetailActivity
 import javax.inject.Inject
 
@@ -42,6 +42,7 @@ class MainActivityFragment : Fragment() {
     }
 
     @Inject
+    @ActivityScope
     lateinit var mainViewModelFactory: MainViewModelFactory
 
     private lateinit var movieRecyclerView: RecyclerView
@@ -78,13 +79,10 @@ class MainActivityFragment : Fragment() {
     override fun onAttach(context: Context?) {
         super.onAttach(context)
 
-        val applicationComponent: ApplicationComponent =
-                AppApplication.instance.get(activity as MainActivity).getApplicationComponent()
-
         val daggerMainActivityComponent = DaggerMainActivityComponent.builder()
-                .applicationComponent(applicationComponent)
+                .applicationComponent(Injector.getAppComponent(activity!!.applicationContext))
                 .build()
-        daggerMainActivityComponent.injectMainActivity(activity as MainActivity)
+        daggerMainActivityComponent.inject(this)
 
         mainViewModelFactory = daggerMainActivityComponent.getMainViewModelFactory()
     }

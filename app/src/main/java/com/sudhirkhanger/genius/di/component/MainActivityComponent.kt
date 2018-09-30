@@ -18,6 +18,7 @@ package com.sudhirkhanger.genius.di.component
 
 import com.sudhirkhanger.genius.di.scopes.ActivityScope
 import com.sudhirkhanger.genius.ui.list.MainActivity
+import com.sudhirkhanger.genius.ui.list.MainActivityFragment
 import com.sudhirkhanger.genius.ui.list.MainViewModelFactory
 import dagger.Component
 
@@ -28,5 +29,6 @@ interface MainActivityComponent {
     @ActivityScope
     fun getMainViewModelFactory(): MainViewModelFactory
 
-    fun injectMainActivity(mainActivity: MainActivity)
+    fun inject(mainActivity: MainActivity)
+    fun inject(mainActivityFragment: MainActivityFragment)
 }
