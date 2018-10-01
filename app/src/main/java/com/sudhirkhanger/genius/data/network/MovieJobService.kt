@@ -19,13 +19,11 @@ package com.sudhirkhanger.genius.data.network
 import com.firebase.jobdispatcher.JobParameters
 import com.firebase.jobdispatcher.JobService
 import com.sudhirkhanger.genius.di.component.Injector
-import com.sudhirkhanger.genius.di.scopes.ApplicationScope
 import javax.inject.Inject
 
 class MovieJobService : JobService() {
 
     @Inject
-    @ApplicationScope
     lateinit var movieNetworkDataSource: MovieNetworkDataSource
 
     override fun onStopJob(job: JobParameters?): Boolean {

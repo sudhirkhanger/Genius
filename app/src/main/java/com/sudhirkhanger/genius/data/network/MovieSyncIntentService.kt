@@ -9,7 +9,6 @@ import javax.inject.Inject
 class MovieSyncIntentService : JobIntentService() {
 
     @Inject
-    @ApplicationScope
     lateinit var movieNetworkDataSource: MovieNetworkDataSource
 
     override fun onHandleWork(intent: Intent) {

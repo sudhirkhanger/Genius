@@ -42,7 +42,6 @@ class MainActivityFragment : Fragment() {
     }
 
     @Inject
-    @ActivityScope
     lateinit var mainViewModelFactory: MainViewModelFactory
 
     private lateinit var movieRecyclerView: RecyclerView
