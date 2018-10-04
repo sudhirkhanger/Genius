@@ -27,7 +27,7 @@ class MovieJobService : JobService() {
     lateinit var movieNetworkDataSource: MovieNetworkDataSource
 
     override fun onStopJob(job: JobParameters?): Boolean {
-        Injector.getAppComponent(applicationContext).inject(this)
+        Injector.getAppComponent().inject(this)
         movieNetworkDataSource.fetchMovieList()
         jobFinished(job!!, false)
         return true

@@ -27,6 +27,7 @@ import timber.log.Timber
 class AppApplication : Application() {
 
     companion object {
+        @JvmStatic
         lateinit var instance: AppApplication
             private set
     }

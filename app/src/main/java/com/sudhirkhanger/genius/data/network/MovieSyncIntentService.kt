@@ -12,7 +12,7 @@ class MovieSyncIntentService : JobIntentService() {
     lateinit var movieNetworkDataSource: MovieNetworkDataSource
 
     override fun onHandleWork(intent: Intent) {
-        Injector.getAppComponent(applicationContext).inject(this)
+        Injector.getAppComponent().inject(this)
         movieNetworkDataSource.fetchMovieList()
     }
 }

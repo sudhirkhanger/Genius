@@ -30,7 +30,6 @@ import android.view.ViewGroup
 import com.sudhirkhanger.genius.R
 import com.sudhirkhanger.genius.di.component.DaggerMainActivityComponent
 import com.sudhirkhanger.genius.di.component.Injector
-import com.sudhirkhanger.genius.di.scopes.ActivityScope
 import com.sudhirkhanger.genius.ui.detail.DetailActivity
 import javax.inject.Inject
 
@@ -79,7 +78,7 @@ class MainActivityFragment : Fragment() {
         super.onAttach(context)
 
         val daggerMainActivityComponent = DaggerMainActivityComponent.builder()
-                .applicationComponent(Injector.getAppComponent(activity!!.applicationContext))
+                .applicationComponent(Injector.getAppComponent())
                 .build()
         daggerMainActivityComponent.inject(this)
 

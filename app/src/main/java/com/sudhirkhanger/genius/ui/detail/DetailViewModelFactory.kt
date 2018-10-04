@@ -18,13 +18,12 @@ package com.sudhirkhanger.genius.ui.detail
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.sudhirkhanger.genius.AppApplication
 import com.sudhirkhanger.genius.data.MovieRepository
+import com.sudhirkhanger.genius.di.component.Injector
 
 class DetailViewModelFactory(private val id: Int) : ViewModelProvider.Factory {
 
-    private val movieRepository: MovieRepository =
-            AppApplication.instance.getApplicationComponent().getMovieRepository()
+    private val movieRepository: MovieRepository = Injector.getAppComponent().getMovieRepository()
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(DetailViewModel::class.java))
