@@ -16,6 +16,7 @@
 
 package com.sudhirkhanger.genius.di.module
 
+import com.google.gson.Gson
 import com.sudhirkhanger.genius.data.network.MovieService
 import com.sudhirkhanger.genius.di.scopes.ApplicationScope
 import dagger.Module
@@ -56,4 +57,8 @@ class RetrofitModule {
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         return httpLoggingInterceptor
     }
+
+    @Provides
+    @ApplicationScope
+    fun getGson(): Gson = Gson()
 }

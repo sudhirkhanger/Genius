@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Genius <font color='#E11112'>Movies &amp; TV</font></string>
+    <string name="list_image_content_desc">movie poster</string>
+    <string name="rating_sample">6/10</string>
 </resources>

@@ -17,12 +17,12 @@
 package com.sudhirkhanger.genius.data.database
 
 import android.arch.persistence.room.TypeConverter
-import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.sudhirkhanger.genius.di.component.Injector
 
 class ListConverter {
 
-    private val gson = Gson()
+    private val gson = Injector.getAppComponent().getGson()
 
     @TypeConverter
     fun fromGenreIdsList(value: List<Int?>?): String {

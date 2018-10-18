@@ -21,13 +21,13 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.design.widget.CollapsingToolbarLayout
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.ImageView
-import android.widget.TextView
 import com.sudhirkhanger.genius.R
 import com.sudhirkhanger.genius.databinding.FragmentDetailBinding
 import com.sudhirkhanger.genius.ui.list.MainActivityFragment
@@ -59,7 +59,8 @@ class DetailFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val backdropImageView = activity?.findViewById(R.id.backdrop_image_view) as ImageView
-        val titleTextView = activity?.findViewById(R.id.title_text_view) as TextView
+        val collapsingToolbarLayout =
+                activity?.findViewById<CollapsingToolbarLayout>(R.id.collapsing_toolbar)
 
         detailViewModel.movie.observe(this, Observer {
             backdropImageView.viewTreeObserver.addOnGlobalLayoutListener(
@@ -69,13 +70,7 @@ class DetailFragment : Fragment() {
                             BindingAdapters.loadImage(backdropImageView, "https://image.tmdb.org/t/p/w300${it?.backdropPath}")
                         }
                     })
-            titleTextView.viewTreeObserver.addOnGlobalLayoutListener(
-                    object : ViewTreeObserver.OnGlobalLayoutListener {
-                        override fun onGlobalLayout() {
-                            titleTextView.viewTreeObserver.removeOnGlobalLayoutListener(this)
-                            titleTextView.text = it?.title
-                        }
-                    })
+            collapsingToolbarLayout?.title = it?.title
         })
     }
 }

@@ -16,10 +16,10 @@
 
 package com.sudhirkhanger.genius.di.component
 
+import com.google.gson.Gson
 import com.sudhirkhanger.genius.AppApplication
 import com.sudhirkhanger.genius.data.MovieRepository
 import com.sudhirkhanger.genius.data.network.MovieJobService
-import com.sudhirkhanger.genius.data.network.MovieNetworkDataSource
 import com.sudhirkhanger.genius.data.network.MovieSyncIntentService
 import com.sudhirkhanger.genius.di.module.ContextModule
 import com.sudhirkhanger.genius.di.module.MovieDbModule
@@ -32,6 +32,7 @@ import dagger.Component
 interface ApplicationComponent {
 
     fun getMovieRepository(): MovieRepository
+    fun getGson(): Gson
 
     fun inject(appApplication: AppApplication)
     fun inject(movieSyncIntentService: MovieSyncIntentService)
