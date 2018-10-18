@@ -23,6 +23,7 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.CollapsingToolbarLayout
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -71,6 +72,8 @@ class DetailFragment : Fragment() {
                         }
                     })
             collapsingToolbarLayout?.title = it?.title
+            collapsingToolbarLayout?.setExpandedTitleColor(
+                    ContextCompat.getColor(context!!, android.R.color.transparent))
         })
     }
 }
