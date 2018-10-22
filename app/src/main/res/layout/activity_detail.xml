@@ -37,8 +37,10 @@
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
                 app:contentScrim="@color/colorPrimary"
-                app:expandedTitleMarginEnd="64dp"
-                app:expandedTitleMarginStart="48dp"
+                app:expandedTitleMarginBottom="@dimen/margin_8dp"
+                app:expandedTitleMarginEnd="@dimen/margin_16dp"
+                app:expandedTitleMarginStart="@dimen/margin_16dp"
+                app:expandedTitleTextAppearance="@style/ExpandedAppBarStyle"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <ImageView

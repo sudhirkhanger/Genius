@@ -20,10 +20,10 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.databinding.DataBindingUtil
+import android.graphics.Typeface
 import android.os.Bundle
 import android.support.design.widget.CollapsingToolbarLayout
 import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -71,9 +71,11 @@ class DetailFragment : Fragment() {
                             BindingAdapters.loadImage(backdropImageView, "https://image.tmdb.org/t/p/w300${it?.backdropPath}")
                         }
                     })
-            collapsingToolbarLayout?.title = it?.title
-            collapsingToolbarLayout?.setExpandedTitleColor(
-                    ContextCompat.getColor(context!!, android.R.color.transparent))
+            
+            collapsingToolbarLayout?.apply {
+                title = it?.title
+                setExpandedTitleTypeface(Typeface.create(expandedTitleTypeface, Typeface.BOLD))
+            }
         })
     }
 }
