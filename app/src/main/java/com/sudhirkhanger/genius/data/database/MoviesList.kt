@@ -52,7 +52,7 @@ data class MovieEntry(
         @field:SerializedName("title")
         var title: String? = null,
 
-        @TypeConverters(ListConverter::class)
+        @TypeConverters(GenreIdsConverter::class)
         @ColumnInfo(name = "genre_ids")
         @field:SerializedName("genre_ids")
         var genreIds: List<Int?>? = null,

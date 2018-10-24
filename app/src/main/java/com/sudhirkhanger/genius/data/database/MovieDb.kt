@@ -5,7 +5,7 @@ import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
 
 @Database(entities = [MovieEntry::class], version = 1, exportSchema = false)
-@TypeConverters(ListConverter::class)
+@TypeConverters(GenreIdsConverter::class)
 abstract class MovieDb : RoomDatabase() {
 
     abstract fun movieDao(): MovieDao

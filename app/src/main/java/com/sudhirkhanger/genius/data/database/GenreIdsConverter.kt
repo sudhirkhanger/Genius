@@ -20,17 +20,19 @@ import android.arch.persistence.room.TypeConverter
 import com.google.gson.reflect.TypeToken
 import com.sudhirkhanger.genius.di.component.Injector
 
-class ListConverter {
+object GenreIdsConverter {
 
     private val gson = Injector.getAppComponent().getGson()
 
     @TypeConverter
+    @JvmStatic
     fun fromGenreIdsList(value: List<Int?>?): String {
         val type = object : TypeToken<List<Int?>?>() {}.type
         return gson.toJson(value, type)
     }
 
     @TypeConverter
+    @JvmStatic
     fun toGenreIdsList(value: String): List<Int?>? {
         val type = object : TypeToken<List<Int?>?>() {}.type
         return gson.fromJson(value, type)
