@@ -33,6 +33,7 @@ import com.sudhirkhanger.genius.R
 import com.sudhirkhanger.genius.databinding.FragmentDetailBinding
 import com.sudhirkhanger.genius.ui.list.MainActivityFragment
 import com.sudhirkhanger.genius.util.BindingAdapters
+import com.sudhirkhanger.genius.util.Util
 
 class DetailFragment : Fragment() {
 
@@ -67,11 +68,13 @@ class DetailFragment : Fragment() {
             backdropImageView.viewTreeObserver.addOnGlobalLayoutListener(
                     object : ViewTreeObserver.OnGlobalLayoutListener {
                         override fun onGlobalLayout() {
-                            backdropImageView.viewTreeObserver.removeOnGlobalLayoutListener(this)
-                            BindingAdapters.loadImage(backdropImageView, "https://image.tmdb.org/t/p/w300${it?.backdropPath}")
+                            backdropImageView
+                                    .viewTreeObserver.removeOnGlobalLayoutListener(this)
+                            BindingAdapters.loadImage(backdropImageView,
+                                    Util.getBackdropPath(it?.backdropPath))
                         }
                     })
-            
+
             collapsingToolbarLayout?.apply {
                 title = it?.title
                 setExpandedTitleTypeface(Typeface.create(expandedTitleTypeface, Typeface.BOLD))

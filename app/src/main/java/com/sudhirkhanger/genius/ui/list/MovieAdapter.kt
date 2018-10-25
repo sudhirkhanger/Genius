@@ -23,6 +23,7 @@ import android.view.ViewGroup
 import com.sudhirkhanger.genius.R
 import com.sudhirkhanger.genius.data.database.MovieEntry
 import com.sudhirkhanger.genius.util.BindingAdapters
+import com.sudhirkhanger.genius.util.Util
 import kotlinx.android.synthetic.main.list_item.view.*
 
 class MovieAdapter(private val movieClick: (Int?) -> Unit) :
@@ -36,17 +37,17 @@ class MovieAdapter(private val movieClick: (Int?) -> Unit) :
     override fun getItemCount() = movieEntries.size
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) =
-            holder.bindMovie(movieEntries[position]!!)
+            holder.bindMovie(movieEntries[position])
 
     class MovieViewHolder(parent: ViewGroup, private val movieClick: (Int?) -> Unit) :
             RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(
                     R.layout.list_item, parent, false)) {
 
-        fun bindMovie(movieEntry: MovieEntry) {
+        fun bindMovie(movieEntry: MovieEntry?) {
             with(movieEntry) {
                 BindingAdapters.loadImage(itemView.movie_image_view,
-                        "https://image.tmdb.org/t/p/w185/${movieEntry.posterPath}")
-                itemView.setOnClickListener { movieClick(this.id) }
+                        Util.getPosterPath(movieEntry?.posterPath))
+                itemView.setOnClickListener { movieClick(this?.id) }
             }
         }
     }
