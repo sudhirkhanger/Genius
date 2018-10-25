@@ -16,15 +16,13 @@
 
 package com.sudhirkhanger.genius.ui.list
 
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.sudhirkhanger.genius.R
-import com.sudhirkhanger.genius.util.BindingAdapters
 import com.sudhirkhanger.genius.data.database.MovieEntry
+import com.sudhirkhanger.genius.util.BindingAdapters
 import kotlinx.android.synthetic.main.list_item.view.*
 
 class MovieAdapter(private val movieClick: (Int?) -> Unit) :
@@ -32,24 +30,21 @@ class MovieAdapter(private val movieClick: (Int?) -> Unit) :
 
     private var movieEntries: MutableList<MovieEntry?> = mutableListOf()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        val itemBinding = DataBindingUtil.inflate<ViewDataBinding>(LayoutInflater.from(parent.context),
-                R.layout.list_item, parent, false)
-        return MovieViewHolder(itemBinding, movieClick)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder =
+            MovieViewHolder(parent, movieClick)
 
     override fun getItemCount() = movieEntries.size
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) =
             holder.bindMovie(movieEntries[position]!!)
 
-    class MovieViewHolder(binding: ViewDataBinding, private val movieClick: (Int?) -> Unit) :
-            RecyclerView.ViewHolder(binding.root) {
-        private val movieImage = binding.root.movie_image_view
+    class MovieViewHolder(parent: ViewGroup, private val movieClick: (Int?) -> Unit) :
+            RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(
+                    R.layout.list_item, parent, false)) {
 
         fun bindMovie(movieEntry: MovieEntry) {
             with(movieEntry) {
-                BindingAdapters.loadImage(movieImage,
+                BindingAdapters.loadImage(itemView.movie_image_view,
                         "https://image.tmdb.org/t/p/w185/${movieEntry.posterPath}")
                 itemView.setOnClickListener { movieClick(this.id) }
             }
