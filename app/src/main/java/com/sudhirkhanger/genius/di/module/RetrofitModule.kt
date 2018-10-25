@@ -17,10 +17,12 @@
 package com.sudhirkhanger.genius.di.module
 
 import com.google.gson.Gson
+import com.sudhirkhanger.genius.BuildConfig
 import com.sudhirkhanger.genius.data.network.MovieService
 import com.sudhirkhanger.genius.di.scopes.ApplicationScope
 import dagger.Module
 import dagger.Provides
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -48,6 +50,7 @@ class RetrofitModule {
     fun getOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
             OkHttpClient.Builder()
                     .addInterceptor(httpLoggingInterceptor)
+                    .addInterceptor(addApiKeyInterceptor(BuildConfig.THE_MOVIE_DB_API_KEY))
                     .build()
 
     @Provides
@@ -56,6 +59,21 @@ class RetrofitModule {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         return httpLoggingInterceptor
+    }
+
+    @Provides
+    @ApplicationScope
+    fun addApiKeyInterceptor(apiKey: String): Interceptor {
+        return Interceptor { chain ->
+            val request = chain.request()
+            val url = request.url().newBuilder()
+                    .addQueryParameter("api_key", apiKey)
+                    .build()
+            val newRequest = request.newBuilder()
+                    .url(url)
+                    .build()
+            chain.proceed(newRequest)
+        }
     }
 
     @Provides

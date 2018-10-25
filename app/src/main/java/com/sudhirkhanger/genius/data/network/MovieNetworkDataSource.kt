@@ -7,7 +7,6 @@ import android.content.Intent
 import android.support.v4.app.JobIntentService
 import com.firebase.jobdispatcher.*
 import com.sudhirkhanger.genius.AppExecutors
-import com.sudhirkhanger.genius.BuildConfig
 import com.sudhirkhanger.genius.data.database.MoviesList
 import com.sudhirkhanger.genius.di.qualifier.ApplicationContext
 import com.sudhirkhanger.genius.di.scopes.ApplicationScope
@@ -63,7 +62,7 @@ class MovieNetworkDataSource @Inject constructor(
 
     fun fetchMovieList() {
         appExecutors.networkIO().execute {
-            val call = movieService.getPopularMovies(1, BuildConfig.THE_MOVIE_DB_API_KEY)
+            val call = movieService.getPopularMovies(1)
             call.enqueue(object : Callback<MoviesList?> {
                 override fun onFailure(call: Call<MoviesList?>?, t: Throwable?) {
                     Timber.e(t.toString())
