@@ -7,7 +7,7 @@ advanced Android concepts and try new APIs.
 
 ## APK
 
-<a href='https://play.google.com/store/apps/details?id=com.sudhirkhanger.genius&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
+<a href='https://play.google.com/store/apps/details?id=com.sudhirkhanger.genius&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png width=150'/></a>
 
 ## TODO
 
@@ -68,7 +68,7 @@ API key from [the Movie DataBase (TMDb)](https://www.themoviedb.org/documentatio
 
 Android developer, Royal Enfield rider, and a blogger.
 
-<a href="https://sudhirkhanger.com/"><img src="https://github.com/sudhirkhanger/social-icons/blob/master/WordPress-logotype-simplified.png?raw=true" width="40"></a>   <a href="https://github.com/sudhirkhanger"><img src="https://github.com/sudhirkhanger/social-icons/blob/master/GitHub-Mark-120px-plus.png?raw=true" width="40"></a>    <a href="https://twitter.com/sudhirkhanger"><img src="https://github.com/sudhirkhanger/social-icons/blob/master/Twitter_Social_Icon_Circle_Color.png?raw=true" width="40"></a>    <a href="https://www.linkedin.com/in/sudhirkhanger/"><img src="https://github.com/sudhirkhanger/social-icons/blob/master/In-2C-128px-TM.png?raw=true" width="40"></a>
+<a href="https://sudhirkhanger.com/"><img src="https://github.com/sudhirkhanger/social-icons/blob/master/WordPress-logotype-simplified.png?raw=true" width="40"></a>   <a href="https://github.com/sudhirkhanger"><img src="https://github.com/sudhirkhanger/social-icons/blob/master/GitHub-Mark-120px-plus.png?raw=true" width="40"></a>    <a href="https://twitter.com/sudhirkhanger"><img src="https://github.com/sudhirkhanger/social-icons/blob/master/Twitter_Social_Icon_Circle_Color.png?raw=true" width="40"></a>    <a href="https://www.linkedin.com/in/sudhirkhanger/"><img src="https://github.com/sudhirkhanger/social-icons/blob/master/In-2C-128px-TM.png?raw=true" width="40"></a><a href="https://play.google.com/store/apps/details?id=com.sudhirkhanger.genius"><img src="https://github.com/sudhirkhanger/social-icons/blob/master/google-play-badge.png?raw=true" width="90"></a>
 
     Copyright 2018 Sudhir Khanger
 
