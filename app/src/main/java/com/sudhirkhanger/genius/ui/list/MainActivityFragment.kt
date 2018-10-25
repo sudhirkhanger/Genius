@@ -81,7 +81,5 @@ class MainActivityFragment : Fragment() {
                 .applicationComponent(Injector.getAppComponent())
                 .build()
         daggerMainActivityComponent.inject(this)
-
-        mainViewModelFactory = daggerMainActivityComponent.getMainViewModelFactory()
     }
 }
