@@ -21,7 +21,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.sudhirkhanger.genius.R
-import com.sudhirkhanger.genius.data.database.MovieEntry
+import com.sudhirkhanger.genius.data.database.Movie
 import com.sudhirkhanger.genius.util.BindingAdapters
 import com.sudhirkhanger.genius.util.Util
 import kotlinx.android.synthetic.main.list_item.view.*
@@ -29,50 +29,50 @@ import kotlinx.android.synthetic.main.list_item.view.*
 class MovieAdapter(private val movieClick: (Int?) -> Unit) :
         RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
-    private var movieEntries: MutableList<MovieEntry?> = mutableListOf()
+    private var movies: MutableList<Movie?> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder =
             MovieViewHolder(parent, movieClick)
 
-    override fun getItemCount() = movieEntries.size
+    override fun getItemCount() = movies.size
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) =
-            holder.bindMovie(movieEntries[position])
+            holder.bindMovie(movies[position])
 
     class MovieViewHolder(parent: ViewGroup, private val movieClick: (Int?) -> Unit) :
             RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(
                     R.layout.list_item, parent, false)) {
 
-        fun bindMovie(movieEntry: MovieEntry?) {
-            with(movieEntry) {
+        fun bindMovie(movie: Movie?) {
+            with(movie) {
                 BindingAdapters.loadImage(itemView.movie_image_view,
-                        Util.getPosterPath(movieEntry?.posterPath))
+                        Util.getPosterPath(movie?.posterPath))
                 itemView.setOnClickListener { movieClick(this?.id) }
             }
         }
     }
 
-    fun setMovieData(newMovieEntries: MutableList<MovieEntry?>) {
-        if (movieEntries.size == 0) {
-            movieEntries = newMovieEntries
+    fun setMovieData(newMovies: MutableList<Movie?>) {
+        if (movies.size == 0) {
+            movies = newMovies
             notifyDataSetChanged()
         } else {
             val result: DiffUtil.DiffResult = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
                 override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
-                        movieEntries[oldItemPosition]?.id == newMovieEntries[newItemPosition]?.id
+                        movies[oldItemPosition]?.id == newMovies[newItemPosition]?.id
 
-                override fun getOldListSize(): Int = movieEntries.size
+                override fun getOldListSize(): Int = movies.size
 
-                override fun getNewListSize(): Int = newMovieEntries.size
+                override fun getNewListSize(): Int = newMovies.size
 
                 override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                    val oldMovieEntry = movieEntries[oldItemPosition]
-                    val newMovieEntry = newMovieEntries[newItemPosition]
+                    val oldMovieEntry = movies[oldItemPosition]
+                    val newMovieEntry = newMovies[newItemPosition]
                     return newMovieEntry?.id == oldMovieEntry?.id
                             && newMovieEntry?.title.equals(oldMovieEntry?.title)
                 }
             })
-            movieEntries = newMovieEntries
+            movies = newMovies
             result.dispatchUpdatesTo(this)
         }
     }

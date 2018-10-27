@@ -7,22 +7,22 @@ import android.arch.persistence.room.*
 interface MovieDao {
 
     @Query("SELECT * FROM movie")
-    fun loadAllMovies(): LiveData<List<MovieEntry>>
+    fun loadAllMovies(): LiveData<List<Movie>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(movieEntry: MovieEntry)
+    fun insert(movie: Movie)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun update(movieEntry: MovieEntry)
+    fun update(movie: Movie)
 
     @Delete
-    fun delete(movieEntry: MovieEntry)
+    fun delete(movie: Movie)
 
     @Query("SELECT * FROM movie WHERE id = :movieId")
-    fun findMovieById(movieId: Int): LiveData<MovieEntry>
+    fun findMovieById(movieId: Int): LiveData<Movie>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun bulkInsert(vararg movieEntry: MovieEntry?)
+    fun bulkInsert(vararg movie: Movie?)
 
     @Query("DELETE FROM movie")
     fun deleteOldData()

@@ -17,7 +17,9 @@
 package com.sudhirkhanger.genius.di.module
 
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.sudhirkhanger.genius.BuildConfig
+import com.sudhirkhanger.genius.data.network.ItemTypeAdapterFactory
 import com.sudhirkhanger.genius.data.network.MovieService
 import com.sudhirkhanger.genius.di.scopes.ApplicationScope
 import dagger.Module
@@ -38,10 +40,10 @@ class RetrofitModule {
 
     @Provides
     @ApplicationScope
-    fun getRetrofit(okHttpClient: OkHttpClient): Retrofit =
+    fun getRetrofit(okHttpClient: OkHttpClient, gson: Gson): Retrofit =
             Retrofit.Builder()
                     .baseUrl("https://api.themoviedb.org/3/")
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(gson))
                     .client(okHttpClient)
                     .build()
 
@@ -78,5 +80,7 @@ class RetrofitModule {
 
     @Provides
     @ApplicationScope
-    fun getGson(): Gson = Gson()
+    fun getGson(): Gson = GsonBuilder()
+            .registerTypeAdapterFactory(ItemTypeAdapterFactory())
+            .create()
 }

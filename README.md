@@ -61,6 +61,7 @@ API key from [the Movie DataBase (TMDb)](https://www.themoviedb.org/documentatio
 * [Dagger 2 for Dummies in Kotlin (with 20 lines of code)](https://medium.com/@elye.project/dagger-2-for-dummies-in-kotlin-with-one-page-simple-code-project-618a5f9f2fe8)
 * [Dagger 2 for Android Beginners](https://medium.com/@harivigneshjayapalan/dagger-2-for-android-beginners-introduction-be6580cb3edb)
 * [ViewModel with Dagger2 (Android Architecture Components)](https://proandroiddev.com/viewmodel-with-dagger2-architecture-components-2e06f06c9455)
+* [AACPagingInfiniteScrollingWithNetworkSample](https://github.com/asheshb/AACPagingInfiniteScrollingWithNetworkSample)
 
 ## Author
 

@@ -19,8 +19,7 @@ package com.sudhirkhanger.genius.data
 import android.arch.lifecycle.LiveData
 import com.sudhirkhanger.genius.AppExecutors
 import com.sudhirkhanger.genius.data.database.MovieDao
-import com.sudhirkhanger.genius.data.database.MovieEntry
-import com.sudhirkhanger.genius.data.database.MoviesList
+import com.sudhirkhanger.genius.data.database.Movie
 import com.sudhirkhanger.genius.data.network.MovieNetworkDataSource
 import com.sudhirkhanger.genius.di.scopes.ApplicationScope
 import javax.inject.Inject
@@ -34,11 +33,11 @@ class MovieRepository @Inject constructor(
     private var isInitialized = false
 
     init {
-        val movieData: LiveData<MoviesList> = movieNetworkDataSource.getMovieList()
+        val movieData: LiveData<List<Movie>> = movieNetworkDataSource.getMovieList()
         movieData.observeForever {
             executors.diskIO().execute {
                 deleteExistingData()
-                movieDao.bulkInsert(*it?.results!!.toTypedArray())
+                movieDao.bulkInsert(*it!!.toTypedArray())
             }
         }
     }
@@ -52,12 +51,12 @@ class MovieRepository @Inject constructor(
         executors.diskIO().execute { startFetchMovieService() }
     }
 
-    fun getMovies(): LiveData<List<MovieEntry>> {
+    fun getMovies(): LiveData<List<Movie>> {
         initializeData()
         return movieDao.loadAllMovies()
     }
 
-    fun getMovieById(movieId: Int): LiveData<MovieEntry> {
+    fun getMovieById(movieId: Int): LiveData<Movie> {
         initializeData()
         return movieDao.findMovieById(movieId)
     }

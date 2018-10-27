@@ -16,7 +16,7 @@
 
 package com.sudhirkhanger.genius.data.network
 
-import com.sudhirkhanger.genius.data.database.MoviesList
+import com.sudhirkhanger.genius.data.database.Movie
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -25,5 +25,5 @@ interface MovieService {
 
     @GET("movie/popular")
     fun getPopularMovies(@Query("page") page: Int):
-            Call<MoviesList>
+            Call<List<Movie>>
 }

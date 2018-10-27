@@ -7,7 +7,7 @@ import android.content.Intent
 import android.support.v4.app.JobIntentService
 import com.firebase.jobdispatcher.*
 import com.sudhirkhanger.genius.AppExecutors
-import com.sudhirkhanger.genius.data.database.MoviesList
+import com.sudhirkhanger.genius.data.database.Movie
 import com.sudhirkhanger.genius.di.qualifier.ApplicationContext
 import com.sudhirkhanger.genius.di.scopes.ApplicationScope
 import retrofit2.Call
@@ -31,9 +31,9 @@ class MovieNetworkDataSource @Inject constructor(
         private val SYNC_FLEXTIME_SECONDS = SYNC_INTERVAL_SECONDS / 3
     }
 
-    private val movieListLiveData = MutableLiveData<MoviesList>()
+    private val movieListLiveData = MutableLiveData<List<Movie>>()
 
-    fun getMovieList(): LiveData<MoviesList> = movieListLiveData
+    fun getMovieList(): LiveData<List<Movie>> = movieListLiveData
 
     fun startFetchMovieService() {
         val intent = Intent(context, MovieSyncIntentService::class.java)
@@ -63,12 +63,13 @@ class MovieNetworkDataSource @Inject constructor(
     fun fetchMovieList() {
         appExecutors.networkIO().execute {
             val call = movieService.getPopularMovies(1)
-            call.enqueue(object : Callback<MoviesList?> {
-                override fun onFailure(call: Call<MoviesList?>?, t: Throwable?) {
+            call.enqueue(object : Callback<List<Movie>?> {
+                override fun onFailure(call: Call<List<Movie>?>?, t: Throwable?) {
                     Timber.e(t.toString())
                 }
 
-                override fun onResponse(call: Call<MoviesList?>?, response: Response<MoviesList?>?) {
+                override fun onResponse(call: Call<List<Movie>?>?,
+                                        response: Response<List<Movie>?>?) {
                     movieListLiveData.postValue(response?.body())
                 }
             })
