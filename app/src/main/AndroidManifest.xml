@@ -52,7 +52,6 @@
         <service
             android:name=".data.network.MovieSyncIntentService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
-
         <service
             android:name=".data.network.MovieJobService"
             android:exported="false">
@@ -60,5 +59,15 @@
                 <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
             </intent-filter>
         </service>
+
+        <activity
+            android:name=".ui.AboutActivity"
+            android:label="About"
+            android:parentActivityName=".ui.list.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sudhirkhanger.genius.ui.list.MainActivity" />
+        </activity>
     </application>
+
 </manifest>

@@ -2,4 +2,19 @@
     <string name="app_name">Genius <font color='#E11112'>Movies &amp; TV</font></string>
     <string name="list_image_content_desc">movie poster</string>
     <string name="rating_sample">6/10</string>
+    <string name="action_about">About</string>
+    <string name="about_desc"><![CDATA[Genius Movies & TV is the one-stop shop for all your movie information demands.]]></string>
+    <string name="about_version">Version 1.0</string>
+    <string name="about_group_title">Contact Developer</string>
+    <string name="about_email_value">sudhir@sudhirkhanger.com</string>
+    <string name="about_email_title">Email</string>
+    <string name="about_website_value">https://sudhirkhanger.com/</string>
+    <string name="about_website_title">Website</string>
+    <string name="about_username_value">sudhirkhanger</string>
+    <string name="about_twitter_title">Twitter</string>
+    <string name="about_youtube_value">UC3-GFESAi6spDTyZ76tyx_Q</string>
+    <string name="about_youtube_title">YouTube</string>
+    <string name="about_play_title">Google Play</string>
+    <string name="about_play_value">com.sudhirkhanger.genius</string>
+    <string name="about_github_title">GitHub</string>
 </resources>

@@ -20,6 +20,7 @@ buildscript {
         espresso_core_version = "3.0.2"
         runnerVersion = "1.0.2"
         leakcanaryVersion = "1.6.1"
+        aboutLibVersion = "1.2.4"
     }
     repositories {
         google()
