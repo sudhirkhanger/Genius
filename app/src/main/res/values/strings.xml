@@ -17,4 +17,5 @@
     <string name="about_play_title">Google Play</string>
     <string name="about_play_value">com.sudhirkhanger.genius</string>
     <string name="about_github_title">GitHub</string>
+    <string name="detail_imageview_content_desc">Detail Layout Image</string>
 </resources>

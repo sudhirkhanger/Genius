@@ -19,12 +19,18 @@ package com.sudhirkhanger.genius.util
 import android.databinding.BindingAdapter
 import android.widget.ImageView
 import com.squareup.picasso.Picasso
+import com.sudhirkhanger.genius.R
 
 object BindingAdapters {
 
     @BindingAdapter("imageUrl")
     @JvmStatic
     fun loadImage(view: ImageView, url: String) {
-        Picasso.get().load(url).into(view)
+        Picasso
+                .get()
+                .load(url)
+                .placeholder(R.drawable.picasso_placeholder_movie_filter_white_48dp)
+                .error(R.drawable.picasso_error_white_48dp)
+                .into(view)
     }
 }

@@ -45,6 +45,9 @@ android {
         // To resolve the conflict for picasso 2.71828
         // dependency on com.android.support:exifinterface:27.1.0
         resolutionStrategy.force "com.android.support:exifinterface:$rootProject.supportLibVersion"
+        // Remove at some point of time
+        // https://issuetracker.google.com/u/1/issues/115738511
+        // resolutionStrategy.force "com.android.tools.build.jetifier:jetifier-core:1.0.0-beta02"
     }
 }
 
