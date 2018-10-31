@@ -51,7 +51,7 @@
                     android:contentDescription="@string/detail_imageview_content_desc"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/picasso_placeholder_movie_filter_white_48dp"
+                    app:srcCompat="@drawable/picasso_placeholder_image"
                     app:layout_collapseMode="parallax"
                     app:layout_collapseParallaxMultiplier="0.5" />
 

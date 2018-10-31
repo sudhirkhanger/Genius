@@ -29,8 +29,8 @@ object BindingAdapters {
         Picasso
                 .get()
                 .load(url)
-                .placeholder(R.drawable.picasso_placeholder_movie_filter_white_48dp)
-                .error(R.drawable.picasso_error_white_48dp)
+                .placeholder(R.drawable.picasso_placeholder_image)
+                .error(R.drawable.picasso_error_image)
                 .into(view)
     }
 }
