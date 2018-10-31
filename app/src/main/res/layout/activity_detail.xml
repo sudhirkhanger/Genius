@@ -50,7 +50,7 @@
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/detail_imageview_content_desc"
                     android:fitsSystemWindows="true"
-                    android:scaleType="centerCrop"
+                    android:scaleType="centerInside"
                     app:srcCompat="@drawable/picasso_placeholder_image"
                     app:layout_collapseMode="parallax"
                     app:layout_collapseParallaxMultiplier="0.5" />

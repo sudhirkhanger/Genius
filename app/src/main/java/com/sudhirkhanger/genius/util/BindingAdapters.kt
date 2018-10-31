@@ -29,6 +29,9 @@ object BindingAdapters {
         Picasso
                 .get()
                 .load(url)
+                .fit()
+                .centerCrop()
+                .noFade()
                 .placeholder(R.drawable.picasso_placeholder_image)
                 .error(R.drawable.picasso_error_image)
                 .into(view)
