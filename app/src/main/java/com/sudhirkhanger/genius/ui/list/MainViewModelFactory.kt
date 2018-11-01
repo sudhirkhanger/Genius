@@ -24,9 +24,13 @@ import javax.inject.Inject
 
 @ActivityScope
 class MainViewModelFactory @Inject constructor(private val movieRepository: MovieRepository) :
-        ViewModelProvider.NewInstanceFactory() {
+        ViewModelProvider.Factory {
 
-    // https://stackoverflow.com/a/45517555/3034693
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T =
-            modelClass.getConstructor(MovieRepository::class.java).newInstance(movieRepository)
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return MainViewModel(movieRepository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
 }
